@@ -1,0 +1,10 @@
+---
+interface Props { href: string; variant?: number; align?: string; external?: boolean }
+const { href, variant = 5, align = 'left', external = false } = Astro.props;
+---
+
+<div class={`b b-s b-s-t150 b-s-b150 b-btn b-btn-${variant} wnd-align-${align}`}>
+  <div class="b-btn-c i-a">
+    <a class="b-btn-l" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}><span class="b-btn-t"><slot /></span></a>
+  </div>
+</div>

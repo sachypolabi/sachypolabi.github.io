@@ -1,0 +1,20 @@
+---
+import { getPicture } from '../lib/pictures';
+import { rootPrefix } from '../lib/paths';
+
+interface Props {
+  image: string;
+  alt: string;
+  sizes?: string;
+  priority?: boolean;
+  style?: string;
+}
+const { image, alt, sizes = '(max-width: 740px) 100vw, 50vw', priority = false, style } = Astro.props;
+const { file, width, height, webp } = getPicture(image);
+const media = `${rootPrefix(Astro.url.pathname)}media/`;
+const srcset = Object.entries(webp).map(([size, source]) => `${media}${source} ${size}`).join(', ');
+---
+<picture>
+  <source type="image/webp" srcset={srcset} sizes={sizes} />
+  <img src={media + file} alt={alt} width={width} height={height} style={style} loading={priority ? undefined : 'lazy'} fetchpriority={priority ? 'high' : undefined} />
+</picture>

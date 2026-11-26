@@ -1,0 +1,10 @@
+---
+interface Props { height: number }
+const { height } = Astro.props;
+---
+
+<div class="b-sp b b-s cf" aria-hidden="true" style="margin-inline:0">
+  <div class="b-sp-c" style={`position:relative;padding-bottom:${height}%`}>
+    <div class="b-sp-placeholder"></div>
+  </div>
+</div>

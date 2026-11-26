@@ -1,0 +1,18 @@
+---
+import { rootPrefix } from '../lib/paths';
+
+const assets = `${rootPrefix(Astro.url.pathname)}assets/`;
+---
+<link rel="stylesheet" href={assets + 'photoswipe/photoswipe.css'} />
+<link rel="stylesheet" href={assets + 'photoswipe/dynamic-caption.css'} />
+<link rel="stylesheet" href={assets + 'gallery.css'} />
+<script is:inline src={assets + 'photoswipe/photoswipe.js'} defer></script>
+<script is:inline src={assets + 'photoswipe/photoswipe-lightbox.js'} defer></script>
+<script is:inline src={assets + 'photoswipe/dynamic-caption.js'} defer></script>
+<script is:inline src={assets + 'gallery.js'} defer></script>
+<noscript>
+  <style is:inline>
+    .b-gal-slideshow .b-gal-list { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 16px; width: 100%; margin: 0; }
+    .b-gal-slideshow .clone, .b-gal-slideshow .arrow, .b-gal-slideshow .dots { display: none; }
+  </style>
+</noscript>

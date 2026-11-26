@@ -1,0 +1,155 @@
+/* The club uses the same text styles when a wide screen contains a narrow column. */
+.ez, .c { container: club-column / inline-size; }
+.ez-c, .c-c {
+  --copy: 15.2px;
+  --title: 36px;
+  --subhead: 22px;
+  --small-head: 16px;
+  --paragraph-gap: 14px;
+  --list-gap: 14px;
+  --title-gap: 15px;
+  --subhead-gap: 12px;
+  --small-head-gap: 6px;
+  --list-offset: 10px;
+  font-size: var(--copy);
+  line-height: 1.6;
+}
+@container club-column (min-width: 390px) {
+  .ez-c, .c-c {
+    --copy: 17.2px;
+    --title: 48px;
+    --subhead: 24px;
+    --small-head: 20px;
+    --paragraph-gap: 15px;
+    --title-gap: 20px;
+    --subhead-gap: 15px;
+    --small-head-gap: 8px;
+    --list-offset: 15px;
+  }
+}
+@container club-column (min-width: 600px) {
+  .ez-c, .c-c {
+    --copy: 18px;
+    --title: 52px;
+    --subhead: 30px;
+    --small-head: 22px;
+    --paragraph-gap: 16px;
+    --list-gap: 16px;
+    --title-gap: 30px;
+    --subhead-gap: 20px;
+    --small-head-gap: 10px;
+    --list-offset: 20px;
+  }
+}
+
+.s-c { --block-space: 10px; }
+.cw-c, .c-c { display: flow-root; }
+.c-c { width: 100%; }
+@media (max-width: 599.98px) {
+  .cw-c > .c { width: 100% !important; padding-block: var(--block-space); }
+  .cw-c > .c:first-child { padding-top: 0; }
+  .cw-c > .c:last-child { padding-bottom: 0; }
+  .cw-c > .column-empty { display: none; }
+  .b-sp { display: none; }
+}
+@media (min-width: 600px) {
+  .s-c { --block-space: 15px; }
+  .cw-c > .c { float: left; }
+}
+@media (min-width: 900px) {
+  .s-c { --block-space: 20px; }
+}
+
+.b-sp, .b-img.wnd-type-image { padding: var(--block-space); }
+.b-text-c {
+  max-width: 100%;
+  padding: calc(.6 * var(--block-space)) var(--block-space);
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
+.b-text-c :where(h1, h2, h3, p, ul, li) { margin: 0; }
+.b-text-c h1 { color: #4caf50; font-size: var(--title); font-weight: 300; line-height: 1.3; padding: 0 0 var(--title-gap); }
+.b-text-c h2 { color: #4caf50; font-size: var(--subhead); font-weight: 400; line-height: 1.35; padding: 0 0 var(--subhead-gap); }
+.b-text-c h3 { color: #a4a4a4; font-size: var(--small-head); font-weight: 450; letter-spacing: .03em; line-height: 1.5; padding: 0 0 var(--small-head-gap); }
+.b-text-c p { padding: 0 0 var(--paragraph-gap); }
+.b-text-c ul { padding: 0 0 var(--list-gap); }
+.b-text-c strong { font-weight: 600; }
+.b-text-c :is(h1,h2,h3) strong { font-weight: 700; }
+.b-text-c > :last-child { padding-bottom: 0; }
+.ez-c > .b-text .b-text-c > :is(h1, h2, h3, p) { max-width: 1003px; }
+.ez-c > .b-text .b-text-c > p { font-size: var(--page-type, var(--copy)); }
+.ez-c > .b-text .b-text-c li { max-width: 1003px; }
+.wnd-align-center { text-align: center; }
+.wnd-align-left { text-align: left; }
+.wnd-align-right { text-align: right; }
+.wnd-align-justify { text-align: justify; }
+.b-text-c .wnd-align-center { margin-inline: auto; }
+.b-text-c .wnd-align-justify { margin-inline: auto; }
+.b-text-c h1 + h2, .b-text-c h2 + h3 { margin-top: -.4em; }
+.b-text-c a { color: inherit; text-decoration: underline; text-decoration-color: color-mix(in srgb,currentColor 50%,transparent); text-underline-offset: .15em; }
+.b-text-c a:hover { text-decoration-color: currentColor; }
+.b-text-c ul { margin-left: var(--list-offset); list-style: none; }
+.b-text-c li { position: relative; padding: 0 0 5px calc(var(--list-offset) + 20px); }
+.b-text-c li:last-child { padding-bottom: 0; }
+.b-text-c li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: .62em;
+  width: .42em;
+  height: .42em;
+  border: solid currentColor;
+  border-width: 1.5px 1.5px 0 0;
+  transform: rotate(45deg);
+}
+.b-text-c .wsw-02 { color: black; }
+.b-text-c .wsw-14 { color: #6fb26f; }
+.b-text-c .wsw-27 { color: #1278ff; }
+.b-text-c .wsw-39 { color: #724fa1; }
+.wnd-font-size-70 { font-size: 70%; }
+.wnd-font-size-80 { font-size: 80%; }
+.wnd-font-size-120 { font-size: 120%; }
+.wnd-font-size-130 { font-size: 130%; }
+
+.b-img-w, .b-img-c { position: relative; overflow: hidden; }
+.b-img-c { line-height: 0; }
+.b-img-c img { display: block; }
+.wnd-type-image .b-img-c picture > img { max-width: none; }
+.b-img-t { padding-top: 10px; font-size: 15.2px; font-style: italic; font-weight: 450; line-height: 1.3; text-align: center; }
+.b-btn { padding: calc(1.5 * var(--block-space)) var(--block-space); }
+.b-btn-l {
+  display: inline-block;
+  max-width: 100%;
+  text-align: center;
+  text-decoration: none;
+  font: 650 16px/1.6 "Raleway Flex", Raleway, sans-serif;
+  letter-spacing: .03em;
+}
+.b-btn-5 .b-btn-l { padding-bottom: 1px; color: #4caf50; }
+.b-btn-5 .b-btn-l::after { content: '→'; display: inline-block; width: 1.62em; text-align: right; }
+.b-btn-l:hover .b-btn-t { text-decoration: underline; }
+.b-btn:not(.b-btn-5) .b-btn-l {
+  padding: 15px 22px;
+  width: min(224px, 100%);
+  border-radius: 2rem;
+  color: white;
+  background: #080808;
+  box-shadow: 0 6px 18px #0002;
+}
+.b-btn.b-btn-3 .b-btn-l { background: #4caf50; }
+.b-btn.b-btn-4 .b-btn-l { background: white; color: #030303; box-shadow: none; outline: 1px solid #4caf50; outline-offset: -1px; }
+.b-btn.b-btn-4 .b-btn-l:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+
+.mt-contact { padding: calc(.5 * var(--block-space)); }
+.mt-contact .mt-item { display: flow-root; }
+.mt-contact .wnd-type-icon { float: left; margin: 7px 10px; width: 24px; padding: 0; }
+.mt-contact .wnd-type-icon .b-img-w { margin-top: 3px; }
+.mt-contact .wnd-type-icon .b-img-c { height: 24px; }
+.mt-contact .b-text-c { padding: 6px 10px; }
+.mt-contact .b-text-c h3 { padding: 0 0 6px; color: #4caf50; font-size: 21px; font-weight: 400; letter-spacing: normal; line-height: 1.4; }
+.mt-contact .b-text-c p { padding: 0; font-size: 16px; line-height: 1.6; }
+.mt-contact .b-text-c h3 a, .mt-contact a[href^="mailto:"] { text-decoration: none; }
+.mt-contact .b-text-c a:hover { text-decoration: underline; }
+.b-hr-line { padding: var(--block-space); }
+.b-hr-line hr { margin: 0; border: 0; border-top: 1px solid #ccc; }
+.club-map { padding: var(--block-space); }

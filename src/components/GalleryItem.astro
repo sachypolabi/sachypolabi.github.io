@@ -1,0 +1,41 @@
+---
+import { rootPrefix } from '../lib/paths';
+
+export interface GalleryPhoto {
+  original: string;
+  thumbnail: string;
+  width: number;
+  height: number;
+  caption: string;
+  fullWidth?: number;
+  fullHeight?: number;
+  webp?: Partial<Record<string, string>>;
+}
+interface Props { photo: GalleryPhoto; sizes: string; clone?: boolean }
+const { photo, sizes, clone = false } = Astro.props;
+const media = `${rootPrefix(Astro.url.pathname)}media/`;
+const width = photo.fullWidth ?? photo.width;
+const height = photo.fullHeight ?? photo.height;
+const files = { [photo.width]: photo.thumbnail, ...photo.webp };
+const srcset = Object.entries(files)
+  .filter(([, file]) => file)
+  .map(([width, file]) => `${media}${file} ${width}w`)
+  .join(', ');
+---
+<div class:list={['b-gal-item', clone ? 'clone' : 'original']} aria-hidden={clone ? 'true' : undefined}>
+  <a class="b-gal-a photo-link" href={media + photo.original} data-pswp-width={width} data-pswp-height={height} data-pswp-srcset={srcset} tabindex={clone ? -1 : undefined}>
+    <figure class="b-gal-img-outer">
+      <div class="b-gal-img">
+        <div class="b-gal-img-pos">
+          <div class="b-gal-img-wrap">
+            <picture>
+              <source type="image/webp" {srcset} {sizes} />
+              <img class="img" src={media + photo.original} width={width} height={height} style={`aspect-ratio:${width} / ${height}`} alt={photo.caption} loading="lazy" />
+            </picture>
+          </div>
+        </div>
+      </div>
+      <figcaption class="b-gal-t">{photo.caption}</figcaption>
+    </figure>
+  </a>
+</div>

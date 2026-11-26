@@ -1,0 +1,80 @@
+---
+import Site from '../layouts/Site.astro';
+import HomeHero from '../components/HomeHero.astro';
+import Column from '../components/Column.astro';
+import Columns from '../components/Columns.astro';
+import ContactDetails from '../components/ContactDetails.astro';
+import Gallery from '../components/Gallery.astro';
+import PageSection from '../components/PageSection.astro';
+import PhotoBlock from '../components/PhotoBlock.astro';
+import SectionLink from '../components/SectionLink.astro';
+import Spacer from '../components/Spacer.astro';
+import TextBlock from '../components/TextBlock.astro';
+import { club } from '../data/club';
+import galleries from '../data/galleries.json';
+
+const description = "Jsme šachový klub ve Středočeském kraji, působíme v oblasti Polabí. Díky projektu 'Šachy do škol' rozvíjíme dovednosti dětí z mateřských a základních škol, ale nabízíme také tréninky pro začátečníky i pokročilé hráče v našem klubu. Účastníme se turnajů na různých úrovních. Přijďte se k nám přidat a rozvíjet své šachové dovednosti!";
+---
+
+<Site title={club.brand} description={description} image="sachy-polabi-700.png" gallery>
+  <HomeHero />
+  <PageSection frame>
+    <Columns>
+      <Column width={50}>
+        <PhotoBlock image="sachy-polabi" alt="Klubový znak Šachy Polabí" aspect={89.74} />
+      </Column>
+      <Column width={50}>
+        <Columns>
+          <Column width={50}><TextBlock><h2>Šachy Polabí z.s.</h2></TextBlock></Column>
+          <Column width={50}><Spacer height={0.35} /></Column>
+        </Columns>
+        <TextBlock>
+          <p class="wnd-align-justify">Jsme šachový klub ve Středočeském kraji, působíme v oblasti Polabí. Díky projektu <strong>'Šachy do škol' </strong>rozvíjíme dovednosti dětí z mateřských a základních škol, ale nabízíme také tréninky pro začátečníky i pokročilé hráče v našem klubu. Účastníme se turnajů na různých úrovních. Přijďte se k nám přidat a rozvíjet své šachové dovednosti!</p>
+        </TextBlock>
+        <SectionLink href="o-nas/">O nás</SectionLink>
+      </Column>
+    </Columns>
+  </PageSection>
+  <PageSection noColumns>
+    <TextBlock>
+      <h1 class="wnd-align-left"><strong><span class="wsw-14">Kde nás najdete?</span></strong></h1>
+      <p>Facebook: <strong><span class="wnd-font-size-120 wsw-27"><a href={club.facebook.url}>{club.facebook.label}</a></span></strong></p>
+      <p>Instagram: <span class="wsw-39"><span class="wnd-font-size-130"><strong><a href={club.instagram.url}>{club.instagram.label}</a></strong></span></span></p>
+    </TextBlock>
+  </PageSection>
+  <PageSection theme="sc-b">
+    <Columns>
+      <Column width={40.623}><TextBlock><h2>Šachy v Polabí!</h2></TextBlock></Column>
+      <Column width={9.438}><Spacer height={79.466} /></Column>
+      <Column width={49.939}>
+        <TextBlock>
+          <p class="wnd-align-justify">Jsme sportovní klub, který se specializuje na šachy ve Středočeském kraji - Polabí. Nabízíme šachové kurzy pro začátečníky i pokročilé, pravidelné turnaje a tréninky s <strong>profesionálními trenéry</strong>. Připojte se k nám a rozvíjejte své šachové dovednosti!</p>
+        </TextBlock>
+        <TextBlock>
+          <ul>
+            <li>Tréninky pro začátečníky</li>
+            <li>Online šachovnice</li>
+            <li>Turnaje a soutěže</li>
+          </ul>
+        </TextBlock>
+        <SectionLink href="sluzby/">Kompletní nabídka služeb</SectionLink>
+      </Column>
+    </Columns>
+  </PageSection>
+  <PageSection>
+    <Columns>
+      <Column width={64.42}><Gallery photos={galleries.klub.filter((photo) => photo.onHomePage)} variant="slideshow" /></Column>
+      <Column width={5}><Spacer height={150} /></Column>
+      <Column width={30.58}>
+        <TextBlock><h2>Šachy v Polabí</h2></TextBlock>
+        <TextBlock>
+          <p class="wnd-align-justify">Jsme šachový klub ve Středočeském kraji, který se specializuje na šachové turnaje a tréninky pro všechny věkové kategorie. Naše práce spočívá v propagaci a rozvoji šachu jako sportu a vzdělávacího nástroje. Přijďte se k nám připojit a objevit svůj talent pro šachy!</p>
+        </TextBlock>
+        <SectionLink href="nase-prace/">Naše práce</SectionLink>
+      </Column>
+    </Columns>
+  </PageSection>
+  <PageSection theme="sc-m" backgroundImage="sachovnice-kontakt">
+    <ContactDetails />
+  </PageSection>
+</Site>

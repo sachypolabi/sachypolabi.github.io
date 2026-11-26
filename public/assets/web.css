@@ -1,0 +1,33 @@
+/* Club links use the same locally hosted type as the original navigation. */
+.skip {
+  position: fixed;
+  top: .5rem;
+  left: .5rem;
+  z-index: 2000;
+  transform: translateY(-200%);
+  padding: .5rem 1rem;
+  background: white;
+  color: #222;
+}
+.skip:focus { transform: none; }
+.club-brand-link, .club-brand-link:hover { text-decoration: none; }
+#menu .club-member-link {
+  display: block;
+  margin: 1.4rem 1.5rem 1rem;
+  color: #267a2a;
+  font-size: .875rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: .22em;
+}
+@media (min-width: 56.25em) {
+  #menu .club-member-link {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin: 1rem 0 0;
+  }
+}
+.no-js #menu:target { visibility: visible; transform: none; }

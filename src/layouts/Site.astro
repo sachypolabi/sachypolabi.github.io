@@ -1,0 +1,63 @@
+---
+import Sidebar from '../components/Sidebar.astro';
+import Footer from '../components/Footer.astro';
+import Lightbox from '../components/Lightbox.astro';
+import { club } from '../data/club';
+import { rootPrefix } from '../lib/paths';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  article?: boolean;
+  gallery?: boolean;
+}
+const { title, description = title, image = 'sachy-polabi.png', article = false, gallery = false } = Astro.props;
+const { pathname } = Astro.url;
+const root = rootPrefix(pathname);
+const isHome = pathname === '/';
+const fullTitle = isHome ? club.brand : `${title} :: ${club.brand}`;
+const canonical = new URL(pathname, Astro.site).href;
+const pageType = isHome ? 'wt-home' : article ? 'wt-blogpost' : pathname === '/aktuality/' ? 'wt-blog' : 'wt-page';
+---
+<!doctype html>
+<html lang="cs" class="no-js sizes srcset">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(`media/${image}`, Astro.site).href} />
+    <link rel="icon" type="image/png" href={`${root}media/sachy-polabi.png`} />
+    <link rel="stylesheet" href={`${root}assets/theme.css`} />
+    <link rel="stylesheet" href={`${root}assets/fonts.css`} />
+    <link rel="stylesheet" href={`${root}assets/content.css`} />
+    <link rel="stylesheet" href={`${root}assets/web.css`} />
+    <script is:inline>
+      document.documentElement.classList.replace('no-js', 'js');
+      if (matchMedia('(hover: hover)').matches) document.documentElement.classList.add('pc');
+    </script>
+    <script is:inline src={`${root}assets/web.js`} defer></script>
+  </head>
+  <body class:list={['l ac-h ac-i ac-o ac-n l-sidebar l-d-none b-btn-fr b-btn-s-l b-btn-dso b-btn-bw-1 img-d-n img-t-u img-h-z line-solid b-e-ds lbox-l c-s-n wnd-fe menu-ready', pageType]}>
+    <a class="skip" href="#obsah">Přejít na obsah</a>
+    <div class="wnd-page l-page cs-dark ac-4caf50 ac-normal t-t-fs-m t-t-fw-m t-t-sp-n t-t-d-n t-s-fs-l t-s-fw-m t-s-sp-n t-s-d-n t-p-fs-m t-p-fw-m t-p-sp-n t-h-fs-m t-h-fw-m t-h-sp-n t-bq-fs-m t-bq-fw-m t-bq-sp-n t-bq-d-l t-btn-fw-s t-nav-fw-s t-pd-fw-s t-nav-tt-n">
+      <div class="l-w t cf t-01">
+        <Sidebar />
+        <main id="obsah" class="l-m cf" tabindex="-1">
+          <div class="sw cf"><div class="sw-c cf">
+            {!isHome && !article && <section class="s s-hm s-hm-hidden wnd-h-hidden cf sc-w" aria-hidden="true"><div></div></section>}
+            <slot />
+          </div></div>
+        </main>
+        <Footer />
+      </div>
+    </div>{gallery && <Lightbox />}
+  </body>
+</html>

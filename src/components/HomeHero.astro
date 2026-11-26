@@ -1,0 +1,31 @@
+---
+import { club } from '../data/club';
+import Picture from './Picture.astro';
+---
+<section class="s s-hm s-hm-claims cf sc-ml wnd-background-image wnd-w-wide wnd-s-normal wnd-h-50 wnd-nh-m wnd-p-cc" aria-labelledby="uvod-titulek">
+  <div class="s-w cf">
+    <div class="s-o cf">
+      <div class="s-bg">
+        <div class="s-bg-l wnd-background-image fx-none bgpos-center-center bgatt-scroll">
+          <Picture image="sachovnice-uvod" alt="" sizes="100vw" priority />
+        </div>
+      </div>
+      <div class="h-c s-c">
+        <div class="h-c-b">
+          <div class="h-c-b-i">
+            <h1 class="claim cf" id="uvod-titulek">
+              <span class="sit b claim-default-inv claim-nb raleway claim-64">
+                <span class="sit-w"><span class="sit-c"><strong>{club.brand}</strong></span></span>
+              </span>
+            </h1>
+            <h3 class="claim cf">
+              <span class="sit b claim-color-alpha claim-wb raleway claim-32">
+                <span class="sit-w"><span class="sit-c">"Vítězíme každým tahem!"</span></span>
+              </span>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

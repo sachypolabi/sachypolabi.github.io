@@ -1,0 +1,48 @@
+---
+import GalleryItem, { type GalleryPhoto } from './GalleryItem.astro';
+
+interface Props { photos: GalleryPhoto[]; variant?: 'feed' | 'slideshow' }
+const { photos, variant = 'feed' } = Astro.props;
+const slides = variant === 'slideshow';
+const cloneCount = photos.length < 2 ? 0 : photos.length > 4 ? 2 : 1;
+const positions = photos.map((_, index) => index);
+const dots = photos.length > 5 ? [...positions, ...positions, ...positions] : positions;
+const sizes = '(min-width: 768px) 40vw, (min-width: 320px) 50vw, 100vw';
+---
+{photos.length > 0 && (
+  <div class="gal-app b-gal b b-s pad-a" data-gallery>
+    {slides ? (
+      <div class="b-gal-slideshow" data-clones={cloneCount} aria-label="Prezentace fotografií" aria-roledescription="karusel" role="region">
+        <div class="b-gal-c">
+          <div class="b-gal-list" style={`--slideshow-items:${photos.length + 2 * cloneCount};--slideshow-position:${cloneCount}`}>
+            {cloneCount > 0 && photos.slice(-cloneCount).map((photo) => <GalleryItem {photo} sizes="100vw" clone />)}
+            {photos.map((photo) => <GalleryItem {photo} sizes="100vw" />)}
+            {photos.slice(0, cloneCount).map((photo) => <GalleryItem {photo} sizes="100vw" clone />)}
+          </div>
+          {photos.length > 1 && <>
+            <button class="arrow arrow-prev" type="button" data-slide-step="-1" aria-label="Předchozí fotografie"><span aria-hidden="true"></span></button>
+            <button class="arrow arrow-next" type="button" data-slide-step="1" aria-label="Další fotografie"><span aria-hidden="true"></span></button>
+          </>}
+        </div>
+        {photos.length > 1 && (
+          <div class="dots">
+            <div class:list={['dots-content', photos.length > 5 ? 'infinite' : 'centered']}>
+              <ul>
+                {dots.map((position, index) => {
+                  const clone = dots.length !== photos.length && (index < photos.length || index >= photos.length * 2);
+                  return <li class:list={[clone ? 'clone' : 'original', { active: position === 0 }]} aria-hidden={clone ? 'true' : undefined}>
+                    <button type="button" data-slide-to={position} aria-label={`Zobrazit fotografii ${position + 1}: ${photos[position].caption}`} tabindex={clone ? -1 : undefined}></button>
+                  </li>;
+                })}
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
+    ) : (
+      <div class="b-gal-feed b-gal-grid grid-2 gaps-m">
+        {photos.map((photo) => <GalleryItem {photo} {sizes} />)}
+      </div>
+    )}
+  </div>
+)}

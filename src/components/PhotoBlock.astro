@@ -1,0 +1,40 @@
+---
+import Picture from './Picture.astro';
+import { rootPrefix } from '../lib/paths';
+import { getPicture } from '../lib/pictures';
+
+interface Props {
+  image: string;
+  alt: string;
+  caption?: string;
+  aspect?: number;
+  cropWidth?: number;
+  cropLeft?: number;
+  cropTop?: number;
+  cropHeight?: number;
+  margin?: number;
+  openOriginal?: boolean;
+  sizes?: string;
+}
+
+const { image, alt, caption, aspect, cropWidth = 100, cropLeft = 0, cropTop = 0, cropHeight = 100, margin = 0, openOriginal = false, sizes = '(min-width: 600px) 75vw, 100vw' } = Astro.props;
+const photo = getPicture(image);
+const heightPercent = aspect ?? 100 * photo.height / photo.width;
+const source = rootPrefix(Astro.url.pathname) + 'media/' + photo.file;
+const position = `position:absolute;top:${cropTop}%;left:${cropLeft}%;width:${cropWidth}%;height:${cropHeight}%`;
+---
+
+<div class:list={['b-img b-img-default b b-s cf pad-a wnd-type-image img-s-n', `wnd-orientation-${photo.width === photo.height ? 'square' : photo.width > photo.height ? 'landscape' : 'portrait'}`]} style={`margin-inline:${margin}%`}>
+  <div class="b-img-w">
+    <div class="b-img-c" style={`padding-bottom:${heightPercent}%;text-align:center`}>
+      <Picture {image} {alt} {sizes} style={position} />
+      {openOriginal && <a class="photo-original" href={source} aria-label={`Otevřít v plném rozlišení – ${alt}`}></a>}
+    </div>
+    {caption && <div class="b-img-t">{caption}</div>}
+  </div>
+</div>
+
+<style>
+  .photo-original { position: absolute; inset: 0; z-index: 1; }
+  .photo-original:focus-visible { outline: 3px solid currentColor; outline-offset: -3px; }
+</style>

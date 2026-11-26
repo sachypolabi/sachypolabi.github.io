@@ -1,0 +1,52 @@
+---
+import Site from '../layouts/Site.astro';
+import Column from '../components/Column.astro';
+import Columns from '../components/Columns.astro';
+import PageSection from '../components/PageSection.astro';
+import PhotoBlock from '../components/PhotoBlock.astro';
+import TextBlock from '../components/TextBlock.astro';
+import schools from '../data/schools.json';
+
+const rowNumbers = [...new Set(schools.map((school) => school.layout.row))];
+---
+
+<Site title="Školy a skupinové tréninky" description="ZŠ Na Výslunní Brandýs nad Labem" image="zs-komenskeho-lysa-700.png">
+  {rowNumbers.map((row, index) => (
+    <PageSection>
+      {index === 0 && (
+        <TextBlock>
+          <h1 class="wnd-align-center"><span class="wsw-02">Školy a skupinové tréninky</span></h1>
+        </TextBlock>
+      )}
+      <Columns>
+        {schools.filter((school) => school.layout.row === row).map(({ image, name, schedule, layout }) => (
+          <Fragment>
+            {layout.gapBefore && <Column width={layout.gapBefore} empty><TextBlock /></Column>}
+            <Column width={layout.width}>
+              <PhotoBlock {image} alt={`Plakát – ${name}`} caption={schedule ? name : undefined}
+                aspect={layout.aspect} cropWidth={layout.cropWidth} cropLeft={layout.cropLeft}
+                openOriginal />
+              <TextBlock>
+                {schedule ? <p class="wnd-align-center" set:html={schedule} /> : <p class="wnd-align-center"><em>{name}</em></p>}
+              </TextBlock>
+            </Column>
+          </Fragment>
+        ))}
+      </Columns>
+      {index === rowNumbers.length - 1 && (
+        <TextBlock>
+          <h3 aria-hidden="true"><br /></h3>
+          <h3 id="skupinove-treninky">
+            <strong style="color:#468747;font-size:1.375rem;font-weight:600;letter-spacing:.03em">Skupinové tréninky:</strong>{' '}
+            <span class="wnd-font-size-70" style="color:#468747;letter-spacing:.03em"><em>Jaromírovy sady 1726/5, Lysá nad Labem</em></span>
+          </h3>
+          <ul>
+            <li><strong>ÚTERÝ </strong><em><span class="wnd-font-size-80">(Miloš Havlena) 3 skupiny: </span></em><strong>od 15:00 / 16:00 / 17:00</strong></li>
+            <li><strong>PÁTEK </strong><em><span class="wnd-font-size-80">(Martin Novotný, Jakub Ocelák) 3 skupiny: </span></em><strong>od 13:30 / 15:00 / 16:00</strong></li>
+            <li><strong>PÁTEK </strong><em><span class="wnd-font-size-80">(Miloš Havlena) 3 skupiny:</span></em><strong> od 14:00 / 15:00 / 16:00</strong></li>
+          </ul>
+        </TextBlock>
+      )}
+    </PageSection>
+  ))}
+</Site>

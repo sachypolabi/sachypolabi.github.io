@@ -1,0 +1,56 @@
+---
+import { club, navigation } from '../data/club';
+import { rootPrefix } from '../lib/paths';
+
+const { pathname } = Astro.url;
+const root = rootPrefix(pathname);
+function linkTo(path: string) {
+  if (path === pathname) return './';
+  return path === '/' ? root || './' : root + path.slice(1);
+}
+function current(path: string) {
+  if (path === pathname) return 'page';
+  if (path === '/aktuality/' && pathname.startsWith('/l/')) return 'location';
+}
+---
+<header class="l-h cf">
+  <div class="sw cf"><div class="sw-c cf">
+    <section class="s s-hn s-hn-sidebar wnd-mt-sidebar menu-default logo-sidebar sc-ml wnd-background-pattern hm-claims wnd-nav-border wnd-nav-sticky" data-space="reset">
+      <div class="s-w"><div class="s-o">
+        <div class="s-bg"><div class="s-bg-l wnd-background-pattern bgpos-center-center bgatt-scroll" style={`background-image:url('${root}media/textura-pozadi.png')`}></div></div>
+        <div class="h-w h-f wnd-fixed"><div class="s-i"><div class="n-l"><div class="s-c menu-nav">
+          <div class="logo-block">
+            <div class="b b-l logo logo-default logo-nb wnd-font-size-20 raleway logo-25 b-ls-s wnd-logo-with-text">
+              <div class="b-l-c logo-content">
+                <div class="b-l-br logo-br"></div>
+                <div class="b-l-text logo-text-wrapper"><div class="b-l-text-w logo-text">
+                  <a class="b-l-text-c logo-text-cell club-brand-link" href={linkTo('/')}>{club.brand}</a>
+                </div></div>
+              </div>
+            </div>
+          </div>
+          <div class="nav-wrapper">
+            <div id="menu-mobile">
+              <a href="#menu" id="menu-submit" role="button" aria-controls="menu" aria-expanded="false" aria-label="Menu"><span></span>Menu</a>
+            </div>
+            <div id="menu-block">
+              <nav id="menu" data-type="vertical" aria-label="Hlavní navigace">
+                <div class="menu-font menu-wrapper">
+                  <a class="menu-close" href="#menu-submit" role="button" aria-label="Zavřít menu"></a>
+                  <ul class="level-1">
+                    {navigation.map(({ path, label }) => (
+                      <li class:list={[{ 'wnd-active': !!current(path), 'wnd-homepage': path === '/' }]}>
+                        <a class="menu-item" href={linkTo(path)} aria-current={current(path)}><span class="menu-item-text">{label}</span></a>
+                      </li>
+                    ))}
+                  </ul>
+                  <a class="club-member-link" href={club.eos.url}>{club.eos.label}</a>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div></div></div></div>
+      </div></div>
+    </section>
+  </div></div>
+</header>

@@ -1,35 +1,56 @@
 # Šachy Polabí
 
-Statický web spolku pro doménu **sachypolabi.cz**. Složka [docs](docs/) obsahuje hotové stránky, fotografie, plakáty, písmo a styly. Úpravy se dělají přímo v HTML.
+Web spolku pro **sachypolabi.cz** používá Astro 5.16.11. Ze zdrojových stránek, fotografií a článků sestavuje samostatné HTML do složky [docs](docs/). Hotovou verzi lze otevřít přímo z disku dvojklikem na [docs/index.html](docs/index.html), včetně navigace, fotogalerií a školních plakátů.
 
-## Místní náhled a úpravy
+## Místní úpravy
 
-Úvodní stránku lze otevřít přímo z disku přes [docs/index.html](docs/index.html). Pro ověření adres ve stejném tvaru jako na hostingu spusť v kořeni projektu následující příkaz a otevři místní náhled. [Náhled na portu 8000](http://127.0.0.1:8000/)
+Pro vývoj použij Node.js 22 a npm. Příkazy spusť v kořeni repozitáře.
 
-    python3 -m http.server 8000 --bind 127.0.0.1 --directory docs
+```sh
+npm ci
+npm run dev
+```
 
-Každá stránka má vlastní složku podle původní adresy. Kontakt je v [docs/kontakt/index.html](docs/kontakt/index.html), rozpis tréninků v [docs/skoly/index.html](docs/skoly/index.html) a přehled článků v [docs/aktuality/index.html](docs/aktuality/index.html). Změnu telefonu či e-mailu promítni také na úvod. Fotografie jsou v [docs/media](docs/media/) a společný vzhled v [docs/assets/web.css](docs/assets/web.css).
+V prohlížeči otevři adresu, kterou vypíše Astro. Změny se během úprav promítnou do náhledu. Příkaz `npm run build` znovu vytvoří složku [docs](docs/) pro otevření z disku nebo nahrání na statický hosting. Sestavenou verzi můžeš ověřit také přes `npm run preview`.
+
+| Co chceš upravit | Kde |
+| --- | --- |
+| Telefon, e-mail, EOS, sociální sítě, navigace a adresa kontaktní mapy | [src/data/club.ts](src/data/club.ts) |
+| Články v Aktualitách | [src/content/aktuality](src/content/aktuality/) |
+| Pořadí fotografií, popisky, náhledy a výběr na titulní stranu | [src/data/galleries.json](src/data/galleries.json) |
+| Školy, plakáty a rozvrhy kroužků | [src/data/schools.json](src/data/schools.json) |
+| Klubové aktivity a seznam sponzorů | [src/data/activities.json](src/data/activities.json) a [src/data/sponsors.json](src/data/sponsors.json) |
+| Ostatní texty a rozpis skupinových tréninků | [src/pages](src/pages/) |
+| Fotografie, plakáty, vzhled a chování galerie | [public/media](public/media/), [public/assets](public/assets/) a [údaje k responzivním obrázkům](src/data/pictures.json) |
+
+Novou aktualitu přidej jako soubor `.md` podle [stávajícího článku](src/content/aktuality/byli-jsme-na-mistrovstvi-republiky.md). Název souboru určuje adresu `/l/nazev-clanku/`. Sestavení automaticky přidá článek do přehledu podle data i do [mapy webu](docs/sitemap.xml). Pole `gallery` je volitelné. Při přidání fotografie vlož originál a náhled do `public/media/`. Podle existujícího záznamu v galerii vyplň názvy souborů, popisek, rozměry náhledu (`width`, `height`) a rozměry originálu (`fullWidth`, `fullHeight`). Příznak `onHomePage` zobrazí vybranou klubovou fotografii také na úvodu.
+
+Šablona [Site.astro](src/layouts/Site.astro) spojuje každou obsahovou stránku s hlavní nabídkou a společnými styly. Při změně zdrojů spusť `npm run build` a ulož i aktualizovaný místní náhled v `docs/`.
+
+## Průběžné nasazení na GitHub Pages
+
+GitHub Actions ověří sestavení u každého návrhu změn. Při zápisu do větve `main` sestaví aktuální zdroje a publikuje je na `https://sachypolabi.cz/`. Stačí tedy upravit třeba článek přímo na GitHubu. Poslední sestavení lze zopakovat přes **Actions → Build and publish Astro → Run workflow**. [Konfigurace nasazení](.github/workflows/pages.yml)
 
 ## Převod z Webnode
 
-Místní kopie z 26. 11. 2026 obsahuje všech deset adres z veřejné mapy webu včetně článku z mistrovství republiky. Fotografie v galeriích a školní plakáty se po kliknutí otevřou v plném rozlišení. Úvod a Kontakt nabízejí telefon, e-mail a vstup na členskou platformu EOS. [Původní mapa webu](https://sachypolabi-cz.webnode.cz/sitemap.xml) · [EOS](https://klub.sachypolabi.cz/)
+Místní kopie z 26. 11. 2026 obsahuje všech deset adres z veřejné mapy webu včetně článku z mistrovství republiky. Fotografie v galeriích a školní plakáty se po kliknutí otevřou v plném rozlišení. Úvod a Kontakt nabízejí telefon, e-mail a vstup na členskou platformu EOS. Na stránce Kontakt se po rozbalení načte mapa přímo od Googlu. [Původní mapa webu](https://sachypolabi-cz.webnode.cz/sitemap.xml) · [EOS](https://klub.sachypolabi.cz/)
 
 Původní odkaz na tým vracel chybu 404. Adresa [docs/tym/index.html](docs/tym/index.html) proto odkazuje přímo na trenéry uvedené u skupinových tréninků. Původní kontaktní mapa označuje **Jaromírovy sady 1526/7**. Rozpis na stránce Školy uvádí pro skupinové tréninky **Jaromírovy sady 1726/5**. Obě adresy jsou v Lysé nad Labem a každá je uvedena na příslušné stránce.
 
 Místní složka .webnode-archive obsahuje původní veřejné HTML, sitemapu, stažená média včetně variant, mapování původních adres a kontrolní součty. Je uložena mimo publikační složku a Git ji při přidávání souborů vynechá.
 
-## První nasazení na GitHub Pages
+## Vlastní doména a DNS
 
-1. Zvol vlastníka a vytvoř veřejný repozitář. Pro klubovou organizaci sachypolabi je obvyklé jméno **sachypolabi/sachypolabi.github.io**. Pro web v organizaci sponzora lze použít **technomaton/sachypolabi.cz**. Veřejný repozitář podporuje Pages i na tarifu GitHub Free. [Druhy webů na GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)
-2. Ještě před aktivací webu otevři ve vybrané organizaci **Settings → Pages → Add a domain**. Pro sachypolabi.cz nech vygenerovat ověřovací TXT. V zóně Azure DNS založ záznam se jménem a hodnotou z GitHubu, dokonči ověření tlačítkem **Verify** a záznam ponech v zóně. [Ověření domény](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages)
-3. Po nahrání souborů vyber v repozitáři **Settings → Pages → Deploy from a branch**, větev **main** a složku **/docs**. Před změnou webových záznamů v DNS ověř v poli **Custom domain** hodnotu **sachypolabi.cz**. Soubor [docs/CNAME](docs/CNAME) obsahuje stejnou doménu. [Publikování ze složky docs](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
-4. V Azure DNS nahraď sadu A na kořeni zóny a nastav explicitní www podle tabulky. Před odstraněním původního zástupného CNAME na Webnode zkontroluj v portálu explicitní záznam klub pro EOS. MX a dosavadní TXT ponech v zóně. [Nastavení vlastní domény](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
-5. Po vystavení certifikátu zapni **Enforce HTTPS**. Ověř úvod, starý odkaz na článek, přesměrování www a otevření klubové platformy. GitHub uvádí, že propagace DNS a zpřístupnění volby HTTPS mohou trvat až 24 hodin. [HTTPS na GitHub Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
+Web patří klubové organizaci na GitHubu a její veřejný repozitář používá tarif Free. [Repozitář spolku](https://github.com/sachypolabi/sachypolabi.github.io)
+
+GitHub Pages obsluhuje veřejný web pod vlastní doménou `sachypolabi.cz` a přesměrovává na ni také `www`. Certifikát a přesměrování HTTP na HTTPS se spravují v repozitáři v **Settings → Pages**. [HTTPS na GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https)
+
+Azure hostuje DNS zónu. Záznam TXT `_github-pages-challenge-sachypolabi` dokládá vlastnictví domény klubové organizaci a patří do zóny i po prvním ověření. Samostatný záznam `klub` obsluhuje členskou platformu EOS. [Ověření domény](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages)
 
 | Jméno v zóně sachypolabi.cz | Typ | Cílová hodnota |
 | --- | --- | --- |
 | @ | A | 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153 |
-| www | CNAME | sachypolabi.github.io. pro klubovou organizaci, technomaton.github.io. pro Technomaton, případně jméno vybraného vlastníka následované .github.io. |
+| www | CNAME | sachypolabi.github.io. |
 | klub | CNAME | gw.eosclub.zone. (současný cíl členské platformy) |
 
 Tarif Webnode již vypršel. Registrace domény má vlastní datum obnovy. Podle CZ.NIC je k 26. 11. 2026 doména u registrátora Gransy registrovaná do 12. 10. 2027. [Registr CZ.NIC](https://rdap.nic.cz/domain/sachypolabi.cz)

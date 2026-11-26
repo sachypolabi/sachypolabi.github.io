@@ -1,0 +1,8 @@
+---
+interface Props { width: number; empty?: boolean }
+const { width, empty = false } = Astro.props;
+---
+
+<div class:list={['c cf', { 'column-empty': empty }]} style={`width:${width}%`}>
+  <div class="c-c cf"><slot /></div>
+</div>
