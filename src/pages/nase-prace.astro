@@ -1,0 +1,25 @@
+---
+import Site from '../layouts/Site.astro';
+import Picture from '../components/Picture.astro';
+import activities from '../data/activities.json';
+
+const description = "Jsme šachový klub v Středočeském kraji, který se specializuje na šachové turnaje a tréninky pro děti. Chceme vytvořit partu rodičů a dětí, kterým trenéři chtějí ukázat šachové prostředí a naučit se v něm orientovat. Vyučujeme především interaktivní a zábavnou formou, kterou si Vaše děti určitě zamilují! Přijďte se k nám připojit a objevit svůj...";
+---
+
+<Site title="Naše práce" description={description} image="mistrovske-turnaje-700.png">
+  <div class="sheet">
+    <h1>Naše práce</h1>
+    <div class="prose lead">
+      <p>Jsme šachový klub v Středočeském kraji, který se specializuje na šachové turnaje a tréninky pro děti. <strong>Chceme vytvořit partu rodičů a dětí, kterým trenéři chtějí ukázat šachové prostředí a naučit se v něm orientovat</strong>. Vyučujeme především interaktivní a zábavnou formou, kterou si Vaše děti určitě zamilují! Přijďte se k nám připojit a objevit svůj talent pro šachy!</p>
+    </div>
+    <div class="activity-grid">
+      {activities.map((activity) => (
+        <section class="activity">
+          <Picture image={activity.image} alt="" sizes="(max-width: 680px) 100vw, 30vw" />
+          <h2>{activity.title}</h2>
+          <p set:html={activity.description} />
+        </section>
+      ))}
+    </div>
+  </div>
+</Site>

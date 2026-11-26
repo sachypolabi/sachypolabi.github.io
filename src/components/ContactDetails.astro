@@ -1,0 +1,22 @@
+---
+import { club } from '../data/club';
+import { rootPrefix } from '../lib/paths';
+
+const root = rootPrefix(Astro.url.pathname);
+const details = [
+  { icon: 'telefon', label: 'Telefon', href: `tel:${club.phone.replace(/\s/g, '')}`, text: club.phone },
+  { icon: 'email', label: 'E-mail', href: `mailto:${club.email}`, text: club.email },
+  { icon: root ? 'kontakt' : 'web', label: 'Web', href: root || './', text: club.brand },
+  { icon: 'tym', label: 'Tým', href: `${root}tym/`, text: 'Tým – Šachy Polabí z.s.' },
+];
+---
+<p>{club.contactIntro}</p>
+<dl class="contacts">
+  {details.map(({ icon, label, href, text }) => (
+    <div>
+      <dt><img src={`${root}media/ikona-${icon}.svg`} alt="" width="22" height="22" />{label}</dt>
+      <dd><a href={href}>{text}</a></dd>
+    </div>
+  ))}
+</dl>
+<a class="button" href={club.eos.url}>{club.eos.label}</a>

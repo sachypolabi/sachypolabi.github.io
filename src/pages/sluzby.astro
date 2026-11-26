@@ -1,0 +1,40 @@
+---
+import Site from '../layouts/Site.astro';
+import Picture from '../components/Picture.astro';
+
+const description = "Jsme sportovní klub, který se specializuje na šachy v Středočeském kraji - Polabí. Nabízíme šachové kurzy pro začátečníky i pokročilé, pravidelné turnaje a tréninky s profesionálními trenéry. Připojte se k nám a rozvíjejte své šachové dovednosti!";
+---
+
+<Site title="Služby" description={description} image="sachovnice-sluzby-700.jpg">
+  <div class="sheet">
+    <h1>Služby</h1>
+    <div class="prose lead">
+      <p>Jsme sportovní klub, který se specializuje na šachy v Středočeském kraji - Polabí. Nabízíme šachové kurzy pro začátečníky i pokročilé, pravidelné turnaje a tréninky s profesionálními trenéry. Připojte se k nám a rozvíjejte své šachové dovednosti!</p>
+    </div>
+    <div class="wide-photo">
+      <Picture image="sachovnice-sluzby" alt="Šachové figury na šachovnici" />
+    </div>
+    <div class="prose service-list">
+      <section>
+        <h2>Tréninky pro začátečníky</h2>
+        <p>Tréninky pro začátečníky jsou výborným způsobem, jak se naučit základy a postupně zlepšovat kvalitu hry. Náš klub v rámci projektu <strong>Šachy do škol </strong>nabízí skupinové tréninky pro děti vybraných základních škol, ale také individuální tréninky pro začátečníky i mírně pokročilé. </p>
+      </section>
+      <section>
+        <h2>Online šachovnice</h2>
+        <p>Součástí tréninků je samozřejmě také řešení online diagramů! Každý týden se mohou Vaše děti těšit na nové diagramy, díky kterým mohou rozvíjet své dovednosti i doma! Odkazy na stránky <strong>my-chess.com</strong> a <strong>lichess.org </strong>↓</p>
+      </section>
+      <section>
+        <h2>Turnaje a soutěže</h2>
+        <p>Turnaje a soutěže jsou skvělým způsobem, jak ukázat své sportovní nebo umělecké schopnosti a soupeřit s ostatními. Bližší informace o jednotlivých akcích můžete najít na webových stránkách Šachového svazu ČR, Středočeského šachového svazu nebo chess-results.com, kam se ukládají výsledky jednotlivých turnajů.</p>
+      </section>
+    </div>
+    <ul class="resource-links">
+      <li><a href="https://sachydoskol.cz">sachydoskol.cz</a></li>
+      <li><a href="https://my-chess.com">my-chess.com</a></li>
+      <li><a href="https://lichess.org">lichess.org</a></li>
+      <li><a href="https://chess-results.com">chess-results.com</a></li>
+      <li><a href="https://chess.cz">chess.cz</a></li>
+      <li><a href="https://www.stcsach.cz/">www.stcsach.cz</a></li>
+    </ul>
+  </div>
+</Site>

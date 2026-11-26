@@ -1,0 +1,6 @@
+---
+interface Props { date: string }
+const { date } = Astro.props;
+const display = date.split('-').reverse().join('.');
+---
+<time datetime={date}>{display}</time>

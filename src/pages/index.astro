@@ -1,0 +1,66 @@
+---
+import Site from '../layouts/Site.astro';
+import { club } from '../data/club';
+import ContactDetails from '../components/ContactDetails.astro';
+import Gallery from '../components/Gallery.astro';
+import galleries from '../data/galleries.json';
+import Picture from '../components/Picture.astro';
+
+const description = "Jsme šachový klub ve Středočeském kraji, působíme v oblasti Polabí. Díky projektu 'Šachy do škol' rozvíjíme dovednosti dětí z mateřských a základních škol, ale nabízíme také tréninky pro začátečníky i pokročilé hráče v našem klubu. Účastníme se turnajů na různých úrovních. Přijďte se k nám přidat a rozvíjet své šachové dovednosti!";
+---
+
+<Site title={club.brand} description={description} image="sachy-polabi-700.png" gallery>
+  <section class="hero" aria-labelledby="uvod-titulek">
+    <Picture image="sachovnice-uvod" alt="" sizes="100vw" priority />
+    <div class="hero-copy">
+      <h1 id="uvod-titulek">{club.brand}</h1>
+      <p>&quot;Vítězíme každým tahem!&quot;</p>
+    </div>
+  </section>
+  <section class="intro band">
+    <div class="club-panel">
+      <div class="club-emblem">
+        <Picture image="sachy-polabi" alt="Klubový znak Šachy Polabí" sizes="(max-width: 700px) 55vw, 30vw" />
+      </div>
+      <div class="prose">
+        <h2>Šachy Polabí z.s.</h2>
+        <p>Jsme šachový klub ve Středočeském kraji, působíme v oblasti Polabí. Díky projektu <strong>'Šachy do škol' </strong>rozvíjíme dovednosti dětí z mateřských a základních škol, ale nabízíme také tréninky pro začátečníky i pokročilé hráče v našem klubu. Účastníme se turnajů na různých úrovních. Přijďte se k nám přidat a rozvíjet své šachové dovednosti!</p>
+        <a class="more" href="o-nas/">O nás</a>
+      </div>
+    </div>
+  </section>
+  <section class="band social-band">
+    <h2>Kde nás najdete?</h2>
+    <div class="social-links">
+      <p>Facebook: <strong><a href={club.facebook.url}>{club.facebook.label}</a></strong></p>
+      <p>Instagram: <strong><a href={club.instagram.url}>{club.instagram.label}</a></strong></p>
+    </div>
+  </section>
+  <section class="band services-band">
+    <div class="prose">
+      <h2>Šachy v Polabí!</h2>
+      <p>Jsme sportovní klub, který se specializuje na šachy ve Středočeském kraji - Polabí. Nabízíme šachové kurzy pro začátečníky i pokročilé, pravidelné turnaje a tréninky s <strong>profesionálními trenéry</strong>. Připojte se k nám a rozvíjejte své šachové dovednosti!</p>
+      <ul>
+        <li>Tréninky pro začátečníky</li>
+        <li>Online šachovnice</li>
+        <li>Turnaje a soutěže</li>
+      </ul>
+      <a class="more" href="sluzby/">Kompletní nabídka služeb</a>
+    </div>
+  </section>
+  <section class="band home-activities">
+    <div class="prose">
+      <h2>Šachy v Polabí</h2>
+      <p>Jsme šachový klub ve Středočeském kraji, který se specializuje na šachové turnaje a tréninky pro všechny věkové kategorie. Naše práce spočívá v propagaci a rozvoji šachu jako sportu a vzdělávacího nástroje. Přijďte se k nám připojit a objevit svůj talent pro šachy!</p>
+      <a class="more" href="nase-prace/">Naše práce</a>
+    </div>
+    <Gallery photos={galleries.klub.filter((photo) => photo.onHomePage)} />
+  </section>
+  <section class="band contact-band">
+    <Picture image="sachovnice-kontakt" alt="" sizes="100vw" />
+    <div class="contact-card">
+      <h2>Kontakt</h2>
+      <ContactDetails />
+    </div>
+  </section>
+</Site>

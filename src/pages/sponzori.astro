@@ -1,0 +1,17 @@
+---
+import Site from '../layouts/Site.astro';
+import Picture from '../components/Picture.astro';
+import sponsors from '../data/sponsors.json';
+---
+
+<Site title="Sponzoři" image="sponzori-700.png">
+  <div class="sheet">
+    <h1>Sponzoři</h1>
+    <div class="sponsors">
+      <a class="photo-link" href="../media/sponzori.png">
+        <Picture image="sponzori" alt="Loga sponzorů Šachy Polabí" />
+      </a>
+      <ul>{sponsors.map((name) => <li>{name}</li>)}</ul>
+    </div>
+  </div>
+</Site>

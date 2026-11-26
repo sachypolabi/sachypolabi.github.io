@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Site from '../layouts/Site.astro';
+import ArticleDate from '../components/ArticleDate.astro';
+import Picture from '../components/Picture.astro';
+
+const articles = (await getCollection('aktuality')).sort((a, b) => b.data.date.localeCompare(a.data.date));
+---
+<Site title="Aktuality" image={articles[0]?.data.shareImage}>
+  <div class="sheet">
+    <h1>Aktuality</h1>
+    {articles.map(({ id, data }) => (
+      <article class="news-preview">
+        <a aria-label={data.title} href={`../l/${id}/`}>
+          <Picture image={data.cover} alt={data.coverAlt} />
+        </a>
+        <div>
+          <ArticleDate date={data.date} />
+          <h2><a href={`../l/${id}/`}>{data.title}</a></h2>
+          <p set:html={data.summary} />
+        </div>
+      </article>
+    ))}
+  </div>
+</Site>

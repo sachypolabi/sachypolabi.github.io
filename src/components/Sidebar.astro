@@ -1,0 +1,29 @@
+---
+import { club, navigation } from '../data/club';
+import { rootPrefix } from '../lib/paths';
+
+const pathname = Astro.url.pathname;
+const root = rootPrefix(pathname);
+const home = root || './';
+function linkTo(path: string) {
+  if (path === pathname) return './';
+  return path === '/' ? home : root + path.slice(1);
+}
+function activePage(path: string) {
+  if (path === pathname) return 'page';
+  if (path === '/aktuality/' && pathname.startsWith('/l/')) return 'location';
+}
+---
+<header class="sidebar">
+  <a class="brand" href={home}>{club.brand}</a>
+  <button class="menu-toggle" type="button" aria-controls="navigace" aria-expanded="false" hidden>Menu</button>
+  <nav id="navigace" aria-label="Hlavní navigace">
+    <ul>
+      {navigation.map(({ path, label }) => (
+        <li><a href={linkTo(path)} aria-current={activePage(path)}>{label}</a></li>
+      ))}
+    </ul>
+    <a class="eos-link" href={club.eos.url}>{club.eos.label}</a>
+  </nav>
+  <p class="credit">Obrázky poskytl <a href="https://pexels.com/">Pexels</a></p>
+</header>

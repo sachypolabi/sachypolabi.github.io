@@ -1,0 +1,44 @@
+---
+import Sidebar from '../components/Sidebar.astro';
+import Lightbox from '../components/Lightbox.astro';
+import { club } from '../data/club';
+import { rootPrefix } from '../lib/paths';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  article?: boolean;
+  gallery?: boolean;
+}
+const { title, description = title, image = 'sachy-polabi.png', article = false, gallery = false } = Astro.props;
+const { pathname } = Astro.url;
+const root = rootPrefix(pathname);
+const fullTitle = pathname === '/' ? club.brand : `${title} :: ${club.brand}`;
+const canonical = new URL(pathname, Astro.site).href;
+---
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(`media/${image}`, Astro.site).href} />
+    <link rel="icon" type="image/png" href={`${root}media/sachy-polabi.png`} />
+    <link rel="stylesheet" href={`${root}assets/fonts.css`} />
+    <link rel="stylesheet" href={`${root}assets/web.css`} />
+    <script is:inline src={`${root}assets/web.js`} defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#obsah">Přejít na obsah</a>
+    <Sidebar />
+    <main id="obsah" tabindex="-1"><slot /></main>{gallery && <Lightbox />}
+  </body>
+</html>

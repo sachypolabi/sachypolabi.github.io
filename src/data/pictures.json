@@ -1,0 +1,172 @@
+{
+  "mistrovstvi-vyhlaseni": {
+    "file": "mistrovstvi-vyhlaseni.jpg",
+    "width": 1600,
+    "height": 1460,
+    "webp": {
+      "450w": "mistrovstvi-vyhlaseni-450.webp",
+      "700w": "mistrovstvi-vyhlaseni-700.webp"
+    }
+  },
+  "sachovnice-uvod": {
+    "file": "sachovnice-uvod.jpg",
+    "width": 1920,
+    "height": 1080,
+    "webp": {
+      "700w": "sachovnice-uvod-700.webp",
+      "1920w": "sachovnice-uvod.webp"
+    }
+  },
+  "sachy-polabi": {
+    "file": "sachy-polabi.png",
+    "width": 897,
+    "height": 805,
+    "webp": {
+      "450w": "sachy-polabi-450.webp",
+      "700w": "sachy-polabi-700.webp",
+      "897w": "sachy-polabi.webp"
+    }
+  },
+  "sachovnice-kontakt": {
+    "file": "sachovnice-kontakt.jpg",
+    "width": 1920,
+    "height": 1286,
+    "webp": {
+      "700w": "sachovnice-kontakt-700.webp",
+      "1920w": "sachovnice-kontakt.webp"
+    }
+  },
+  "mistrovske-turnaje": {
+    "file": "mistrovske-turnaje.png",
+    "width": 317,
+    "height": 159,
+    "webp": {
+      "317w": "mistrovske-turnaje-450.webp"
+    }
+  },
+  "treninkove-kempy": {
+    "file": "treninkove-kempy.png",
+    "width": 500,
+    "height": 500,
+    "webp": {
+      "450w": "treninkove-kempy-450.webp",
+      "500w": "treninkove-kempy-700.webp"
+    }
+  },
+  "online-sachy": {
+    "file": "online-sachy.jpg",
+    "width": 420,
+    "height": 220,
+    "webp": {
+      "420w": "online-sachy-450.webp"
+    }
+  },
+  "lekce-pro-zacatecniky": {
+    "file": "lekce-pro-zacatecniky.png",
+    "width": 1350,
+    "height": 650,
+    "webp": {
+      "450w": "lekce-pro-zacatecniky-450.webp",
+      "700w": "lekce-pro-zacatecniky-700.webp",
+      "1350w": "lekce-pro-zacatecniky.webp"
+    }
+  },
+  "galerie-lysa-zije-2024": {
+    "file": "galerie-lysa-zije-2024.png",
+    "width": 777,
+    "height": 731,
+    "webp": {
+      "450w": "galerie-lysa-zije-2024-450.webp",
+      "700w": "galerie-lysa-zije-2024-700.webp",
+      "777w": "galerie-lysa-zije-2024.webp"
+    }
+  },
+  "souteze-mladeze": {
+    "file": "souteze-mladeze.jpg",
+    "width": 420,
+    "height": 220,
+    "webp": {
+      "420w": "souteze-mladeze-450.webp"
+    }
+  },
+  "galerie-liga-spuntu-7-kolo-vystaviste": {
+    "file": "galerie-liga-spuntu-7-kolo-vystaviste.png",
+    "width": 1005,
+    "height": 731,
+    "webp": {
+      "450w": "galerie-liga-spuntu-7-kolo-vystaviste-450.webp",
+      "700w": "galerie-liga-spuntu-7-kolo-vystaviste-700.webp",
+      "1005w": "galerie-liga-spuntu-7-kolo-vystaviste.webp"
+    }
+  },
+  "zs-komenskeho-lysa": {
+    "file": "zs-komenskeho-lysa.png",
+    "width": 619,
+    "height": 877,
+    "webp": {
+      "318w": "zs-komenskeho-lysa-450.webp",
+      "494w": "zs-komenskeho-lysa-700.webp",
+      "619w": "zs-komenskeho-lysa.webp"
+    }
+  },
+  "zs-hrozneho-lysa": {
+    "file": "zs-hrozneho-lysa.png",
+    "width": 618,
+    "height": 874,
+    "webp": {
+      "318w": "zs-hrozneho-lysa-450.webp",
+      "495w": "zs-hrozneho-lysa-700.webp",
+      "618w": "zs-hrozneho-lysa.webp"
+    }
+  },
+  "zs-masaryka-lysa": {
+    "file": "zs-masaryka-lysa.png",
+    "width": 615,
+    "height": 861,
+    "webp": {
+      "321w": "zs-masaryka-lysa-450.webp",
+      "500w": "zs-masaryka-lysa-700.webp",
+      "615w": "zs-masaryka-lysa.webp"
+    }
+  },
+  "zs-na-vyslunni-brandys": {
+    "file": "zs-na-vyslunni-brandys.png",
+    "width": 606,
+    "height": 870,
+    "webp": {
+      "313w": "zs-na-vyslunni-brandys-450.webp",
+      "488w": "zs-na-vyslunni-brandys-700.webp",
+      "606w": "zs-na-vyslunni-brandys.webp"
+    }
+  },
+  "zs-juventa": {
+    "file": "zs-juventa.png",
+    "width": 601,
+    "height": 870,
+    "webp": {
+      "311w": "zs-juventa-450.webp",
+      "484w": "zs-juventa-700.webp",
+      "601w": "zs-juventa.webp"
+    }
+  },
+  "sachovnice-sluzby": {
+    "file": "sachovnice-sluzby.jpg",
+    "width": 1920,
+    "height": 1200,
+    "webp": {
+      "450w": "sachovnice-sluzby-450.webp",
+      "700w": "sachovnice-sluzby-700.webp",
+      "1920w": "sachovnice-sluzby.webp"
+    }
+  },
+  "sponzori": {
+    "file": "sponzori.png",
+    "width": 445,
+    "height": 774,
+    "webp": {
+      "259w": "sponzori-450.webp",
+      "402w": "sponzori-700.webp",
+      "445w": "sponzori.webp"
+    }
+  }
+}

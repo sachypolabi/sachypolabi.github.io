@@ -1,0 +1,110 @@
+{
+  "klub": [
+    {
+      "original": "galerie-okresni-prebor-skol-nymburk.png",
+      "thumbnail": "galerie-okresni-prebor-skol-nymburk-450.webp",
+      "width": 406,
+      "height": 450,
+      "caption": "Okresní přebor škol - Nymburk"
+    },
+    {
+      "original": "galerie-mistni-kolo-skolniho-sachu-skolni-klub-zs-juventa.png",
+      "thumbnail": "galerie-mistni-kolo-skolniho-sachu-skolni-klub-zs-juventa-450.webp",
+      "width": 450,
+      "height": 337,
+      "caption": "Místní kolo školního šachu - školní klub ZS Juventa"
+    },
+    {
+      "original": "galerie-mestska-liga-knihovna-milovice.png",
+      "thumbnail": "galerie-mestska-liga-knihovna-milovice-450.webp",
+      "width": 323,
+      "height": 450,
+      "caption": "Městská liga - knihovna Milovice"
+    },
+    {
+      "original": "galerie-liga-spuntu-knihovna-zs-juventa.png",
+      "thumbnail": "galerie-liga-spuntu-knihovna-zs-juventa-450.webp",
+      "width": 293,
+      "height": 450,
+      "caption": "Liga Špuntů - knihovna ZŠ Juventa"
+    },
+    {
+      "original": "galerie-sportovni-den-hakenuv-stadion.png",
+      "thumbnail": "galerie-sportovni-den-hakenuv-stadion-450.webp",
+      "width": 421,
+      "height": 450,
+      "caption": "Sportovní den - Hakenův stadion"
+    },
+    {
+      "original": "galerie-krajske-kolo-skolniho-sachu-neratovice.png",
+      "thumbnail": "galerie-krajske-kolo-skolniho-sachu-neratovice-450.webp",
+      "width": 450,
+      "height": 226,
+      "caption": "Krajské kolo školního šachu - Neratovice",
+      "onHomePage": true
+    },
+    {
+      "original": "galerie-okresni-kolo-skolniho-sachu-nymburk.png",
+      "thumbnail": "galerie-okresni-kolo-skolniho-sachu-nymburk-450.webp",
+      "width": 450,
+      "height": 237,
+      "caption": "Okresní kolo školního šachu - Nymburk",
+      "onHomePage": true
+    },
+    {
+      "original": "galerie-mistni-kolo-skolniho-sachu-misan.png",
+      "thumbnail": "galerie-mistni-kolo-skolniho-sachu-misan-450.webp",
+      "width": 450,
+      "height": 337,
+      "caption": "Místní kolo školního šachu - Misan",
+      "onHomePage": true
+    },
+    {
+      "original": "galerie-liga-spuntu-7-kolo-vystaviste.png",
+      "thumbnail": "galerie-liga-spuntu-7-kolo-vystaviste-450.webp",
+      "width": 450,
+      "height": 327,
+      "caption": "Liga Špuntů 7. kolo - Výstaviště",
+      "onHomePage": true
+    },
+    {
+      "original": "galerie-lysa-zije-2024.png",
+      "thumbnail": "galerie-lysa-zije-2024-450.webp",
+      "width": 450,
+      "height": 423,
+      "caption": "Lysá žije 2024",
+      "onHomePage": true
+    },
+    {
+      "original": "galerie-mestska-liga-7-kolo-domov-na-zamku.png",
+      "thumbnail": "galerie-mestska-liga-7-kolo-domov-na-zamku-450.webp",
+      "width": 450,
+      "height": 330,
+      "caption": "Městská liga 7. kolo - Domov na zámku",
+      "onHomePage": true
+    }
+  ],
+  "mistrovstvi": [
+    {
+      "original": "mistrovstvi-vyhlaseni.jpg",
+      "thumbnail": "mistrovstvi-vyhlaseni-450.webp",
+      "width": 450,
+      "height": 411,
+      "caption": "Mistr Čech do 10 let Alexandr Jan Urbánek (uprostřed)"
+    },
+    {
+      "original": "mistrovstvi-hraci-mistnost.jpg",
+      "thumbnail": "mistrovstvi-hraci-mistnost-450.webp",
+      "width": 284,
+      "height": 450,
+      "caption": "Hrací místnost"
+    },
+    {
+      "original": "mistrovstvi-tym.jpg",
+      "thumbnail": "mistrovstvi-tym-450.webp",
+      "width": 450,
+      "height": 292,
+      "caption": "Náš tým zleva: Dominik Sajdl (U8), Pavel Peška (U8), Michal Tůma (U8), Honza Urbánek (U10), Honza Jílek (U10), Lukáš Hájek (U10), Kuba Kapcala, Lukáš Kment (U8), Ondra Chorvát (U8), Martin Háša (U8) a ležící Kuba Jaňour (U10)"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+---
+import { rootPrefix } from '../lib/paths';
+
+interface Photo {
+  original: string;
+  thumbnail: string;
+  width: number;
+  height: number;
+  caption: string;
+}
+interface Props { photos: Photo[] }
+const { photos } = Astro.props;
+const media = `${rootPrefix(Astro.url.pathname)}media/`;
+---
+<div class="gallery" data-gallery>
+  {photos.map(({ original, thumbnail, width, height, caption }) => (
+    <figure>
+      <a class="photo-link" href={media + original}>
+        <img src={media + thumbnail} width={width} height={height} alt={caption} loading="lazy" />
+      </a>
+      <figcaption>{caption}</figcaption>
+    </figure>
+  ))}
+</div>

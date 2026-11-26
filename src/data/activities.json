@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Mistrovské turnaje",
+    "image": "mistrovske-turnaje",
+    "description": "Mistrovské turnaje jsou nejprestižnější událostí - patří sem Krajské přebory, Mistrovství Čech i České republiky v klasickém nebo rapid šachu, kde měří své síly ti nejlepší hráči v jednotlivých věkových kategoriích z celé republiky."
+  },
+  {
+    "title": "Tréninkové kempy",
+    "image": "treninkove-kempy",
+    "description": "Tréninkové kempy formou víkendových kempů nebo soustředění jsou ideálním místem pro intenzivní trénink formou her a kvízů v kombinaci s pohybovou aktivitou v příjemném a motivujícím prostředí."
+  },
+  {
+    "title": "Online šachy",
+    "image": "online-sachy",
+    "description": "Online šachy jsou skvělým způsobem, jak si zlepšit své šachové dovednosti a současně se bavit s hráči z celého světa. Od ledna do března pořádáme LŠ a ML online."
+  },
+  {
+    "title": "Lekce pro začátečníky",
+    "image": "lekce-pro-zacatecniky",
+    "description": "Šachové lekce pro začátečníky jsou skvělým způsobem, jak se seznámit s pravidly a strategiemi tohoto oblíbeného intelektuálního sportu. Používáme učebnici \"Metodika a cvičebnice\" od Ing. Petra Herejka a 7 dílů cvičebnice od Martina Beila. "
+  },
+  {
+    "title": "Akce pro rodiny",
+    "image": "galerie-lysa-zije-2024",
+    "description": "Akce pro rodiny jsou skvělým způsobem, jak trávit společný čas s blízkými, vytvářet nezapomenutelné zážitky a rozvíjet vzájemné vztahy. Mezi naše hlavní akce patří <strong>Šachy v přírodě </strong>a <strong>Šachy na lodi, </strong>festivaly sportu a sportovní dny."
+  },
+  {
+    "title": "Soutěže mládeže",
+    "image": "souteze-mladeze",
+    "description": "Soutěže mládeže jsou skvělou příležitostí prokázat své schopnosti, talent a kreativitu v individuálních i týmových soutěžích a získat cenné zkušenosti a ocenění. Účastníme se hlavně <strong>Regionálních žákovských lig</strong> nejen v našem regionu, ale i v regionech v jeho přímém okolí."
+  }
+]

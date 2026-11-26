@@ -1,0 +1,24 @@
+---
+import Site from '../layouts/Site.astro';
+import Picture from '../components/Picture.astro';
+
+const description = "Náš šachový klub se skládá ze 3 pobočných spolků - Lysá nad Labem, Brandýs nad Labem a Milovice. V rámci projektu \"Šachy do škol\" se v těchto městech věnujeme tréninku dětí ve vybraných mateřských a základních školách. Skupinové tréninky pak probíhají v Lysé nad Labem. Naše sídlo najdete v Brandýse nad Labem - Stará Boleslav.";
+---
+
+<Site title="O nás" description={description} image="galerie-liga-spuntu-7-kolo-vystaviste-700.png">
+  <div class="sheet">
+    <h1>O nás</h1>
+    <div class="prose lead">
+      <p>Náš šachový klub se skládá ze 3 pobočných spolků - Lysá nad Labem, Brandýs nad Labem a Milovice. V rámci projektu <strong>"Šachy do škol" </strong>se v těchto městech věnujeme tréninku dětí ve vybraných <strong>mateřských </strong>a <strong>základních </strong>školách. Skupinové tréninky pak probíhají v <strong>Lysé nad Labem</strong>. Naše sídlo najdete v <strong>Brandýse nad Labem - Stará Boleslav.</strong></p>
+    </div>
+    <figure class="feature-photo">
+      <a class="photo-link" href="../media/galerie-liga-spuntu-7-kolo-vystaviste.png">
+        <Picture image="galerie-liga-spuntu-7-kolo-vystaviste" alt="Liga Špuntů 7. kolo - Výstaviště" />
+      </a>
+      <figcaption>Liga Špuntů 7. kolo - Výstaviště</figcaption>
+    </figure>
+    <div class="prose">
+      <p>Jsme šachový klub sídlící v krásném Středočeském kraji, konkrétně v oblasti Polabí. Naše hlavní specializace jsou samozřejmě šachy, které jsou nejen sportem, ale také velkou vášní pro nás. Naši členové jsou různorodí - od začátečníků až po zkušené hráče, ale všichni mají společné jedno - <strong>lásku </strong><strong>ke hře</strong>. V našem klubu si můžete zahrát šachy nejen pro zábavu, ale také se můžete zapojit do soutěží a turnajů, které pořádáme.</p>
+    </div>
+  </div>
+</Site>

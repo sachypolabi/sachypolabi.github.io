@@ -1,0 +1,25 @@
+[
+  {
+    "name": "ZŠ J.A. Komenského Lysá nad Labem",
+    "image": "zs-komenskeho-lysa",
+    "schedule": "<strong>Každé</strong> <strong>pondělí 13:15-15:00</strong>"
+  },
+  {
+    "name": "ZŠ B. Hrozného Lysá nad Labem",
+    "image": "zs-hrozneho-lysa",
+    "schedule": "<strong>Každou středu</strong> <strong>14:00-15:30</strong>"
+  },
+  {
+    "name": "ZŠ T.G. Masaryka Lysá nad Labem",
+    "image": "zs-masaryka-lysa",
+    "schedule": "<strong>Každou středu 12:15-13:45</strong>"
+  },
+  {
+    "name": "ZŠ Na Výslunní Brandýs nad Labem",
+    "image": "zs-na-vyslunni-brandys"
+  },
+  {
+    "name": "ZŠ JUVENTA Lysá nad Labem",
+    "image": "zs-juventa"
+  }
+]

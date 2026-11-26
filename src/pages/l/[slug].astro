@@ -1,0 +1,34 @@
+---
+import { getCollection, render } from 'astro:content';
+import Site from '../../layouts/Site.astro';
+import ArticleDate from '../../components/ArticleDate.astro';
+import Gallery from '../../components/Gallery.astro';
+import galleries from '../../data/galleries.json';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('aktuality');
+  return articles.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, date, summary, shareImage, gallery } = entry.data;
+const photos = gallery ? galleries[gallery as keyof typeof galleries] : [];
+const description = summary.replace(/<[^>]+>/g, '');
+const shareUrl = encodeURIComponent(new URL(Astro.url.pathname, Astro.site).href);
+---
+<Site title={title} description={description} image={shareImage} article gallery={photos.length > 0}>
+  <article class="sheet article">
+    <a class="back" href="../../aktuality/">Aktuality</a>
+    <h1>{title}</h1>
+    <ArticleDate date={date} />
+    <div class="prose">
+      <p set:html={summary} />
+      <Content />
+    </div>
+    {photos.length > 0 && <Gallery photos={photos} />}
+    <div class="share">
+      <a href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}>Sdílet na Facebooku</a>
+      <a href={`https://twitter.com/share?url=${shareUrl}`}>Sdílet na X</a>
+    </div>
+  </article>
+</Site>

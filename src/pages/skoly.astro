@@ -1,0 +1,35 @@
+---
+import Site from '../layouts/Site.astro';
+import Picture from '../components/Picture.astro';
+import { getPicture } from '../lib/pictures';
+import schools from '../data/schools.json';
+
+const description = "ZŠ Na Výslunní Brandýs nad Labem";
+---
+
+<Site title="Školy a skupinové tréninky" description={description} image="zs-komenskeho-lysa-700.png">
+  <div class="sheet">
+    <h1>Školy a skupinové tréninky</h1>
+    <div class="school-grid">
+      {schools.map(({ name, image, schedule }) => (
+        <figure class="school">
+          <a class="photo-link" href={`../media/${getPicture(image).file}`}>
+            <Picture image={image} alt={`Plakát – ${name}`} sizes="(max-width: 600px) 90vw, 25vw" />
+          </a>
+          <figcaption>
+            <strong>{name}</strong>{schedule && <p set:html={schedule} />}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+    <section class="training prose" id="skupinove-treninky">
+      <h2>Skupinové tréninky</h2>
+      <p class="place">Jaromírovy sady 1726/5, Lysá nad Labem</p>
+      <ul>
+        <li><strong>ÚTERÝ </strong><em>(Miloš Havlena) 3 skupiny: </em><strong>od 15:00 / 16:00 / 17:00</strong></li>
+        <li><strong>PÁTEK </strong><em>(Martin Novotný, Jakub Ocelák) 3 skupiny: </em><strong>od 13:30 / 15:00 / 16:00</strong></li>
+        <li><strong>PÁTEK </strong><em>(Miloš Havlena) 3 skupiny:</em><strong> od 14:00 / 15:00 / 16:00</strong></li>
+      </ul>
+    </section>
+  </div>
+</Site>

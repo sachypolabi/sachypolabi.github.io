@@ -1,0 +1,21 @@
+---
+import Site from '../layouts/Site.astro';
+import { club } from '../data/club';
+import ContactDetails from '../components/ContactDetails.astro';
+
+const mapsQuery = new URLSearchParams({ api: '1', query: club.mapAddress });
+---
+
+<Site title="Kontakt" description={club.contactIntro}>
+  <div class="sheet">
+    <h1>Kontakt</h1>
+    <div class="prose">
+      <ContactDetails />
+      <section class="map-link">
+        <h2>Mapa</h2>
+        <p>{club.mapAddress}</p>
+        <a class="more" href={`https://www.google.com/maps/search/?${mapsQuery}`}>Otevřít v Mapách Google</a>
+      </section>
+    </div>
+  </div>
+</Site>

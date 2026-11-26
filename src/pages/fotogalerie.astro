@@ -1,0 +1,12 @@
+---
+import Site from '../layouts/Site.astro';
+import Gallery from '../components/Gallery.astro';
+import galleries from '../data/galleries.json';
+---
+
+<Site title="Fotogalerie" image="galerie-okresni-prebor-skol-nymburk-700.png" gallery>
+  <div class="sheet">
+    <h1>Fotogalerie</h1>
+    <Gallery photos={galleries.klub} />
+  </div>
+</Site>
