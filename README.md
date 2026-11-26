@@ -23,7 +23,7 @@ V prohlížeči otevři adresu, kterou vypíše Astro. Změny se během úprav p
 | Ostatní texty a rozpis skupinových tréninků | [src/pages](src/pages/) |
 | Fotografie, plakáty, vzhled a chování galerie | [public/media](public/media/), [public/assets](public/assets/) a [údaje k responzivním obrázkům](src/data/pictures.json) |
 
-Novou aktualitu přidej jako soubor `.md` podle [stávajícího článku](src/content/aktuality/byli-jsme-na-mistrovstvi-republiky.md). Název souboru určuje adresu `/l/nazev-clanku/`. Sestavení automaticky přidá článek do přehledu podle data i do [mapy webu](docs/sitemap.xml). Pole `gallery` je volitelné. Při přidání fotografie vlož originál a náhled do `public/media/` a přidej položku s popiskem a rozměry náhledu do příslušné galerie. Příznak `onHomePage` zobrazí vybranou klubovou fotografii také na úvodu.
+Novou aktualitu přidej jako soubor `.md` podle [stávajícího článku](src/content/aktuality/byli-jsme-na-mistrovstvi-republiky.md). Název souboru určuje adresu `/l/nazev-clanku/`. Sestavení automaticky přidá článek do přehledu podle data i do [mapy webu](docs/sitemap.xml). Pole `gallery` je volitelné. Při přidání fotografie vlož originál a náhled do `public/media/`. Podle existujícího záznamu v galerii vyplň názvy souborů, popisek, rozměry náhledu (`width`, `height`) a rozměry originálu (`fullWidth`, `fullHeight`). Příznak `onHomePage` zobrazí vybranou klubovou fotografii také na úvodu.
 
 Šablona [Site.astro](src/layouts/Site.astro) spojuje každou obsahovou stránku s hlavní nabídkou a společnými styly. Při změně zdrojů spusť `npm run build` a ulož i aktualizovaný místní náhled v `docs/`.
 
@@ -33,7 +33,7 @@ GitHub Actions ověří sestavení u každého návrhu změn. Při zápisu do v�
 
 ## Převod z Webnode
 
-Místní kopie z 26. 11. 2026 obsahuje všech deset adres z veřejné mapy webu včetně článku z mistrovství republiky. Fotografie v galeriích a školní plakáty se po kliknutí otevřou v plném rozlišení. Úvod a Kontakt nabízejí telefon, e-mail a vstup na členskou platformu EOS. [Původní mapa webu](https://sachypolabi-cz.webnode.cz/sitemap.xml) · [EOS](https://klub.sachypolabi.cz/)
+Místní kopie z 26. 11. 2026 obsahuje všech deset adres z veřejné mapy webu včetně článku z mistrovství republiky. Fotografie v galeriích a školní plakáty se po kliknutí otevřou v plném rozlišení. Úvod a Kontakt nabízejí telefon, e-mail a vstup na členskou platformu EOS. Na stránce Kontakt se po rozbalení načte mapa přímo od Googlu. [Původní mapa webu](https://sachypolabi-cz.webnode.cz/sitemap.xml) · [EOS](https://klub.sachypolabi.cz/)
 
 Původní odkaz na tým vracel chybu 404. Adresa [docs/tym/index.html](docs/tym/index.html) proto odkazuje přímo na trenéry uvedené u skupinových tréninků. Původní kontaktní mapa označuje **Jaromírovy sady 1526/7**. Rozpis na stránce Školy uvádí pro skupinové tréninky **Jaromírovy sady 1726/5**. Obě adresy jsou v Lysé nad Labem a každá je uvedena na příslušné stránce.
 
