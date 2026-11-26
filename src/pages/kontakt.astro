@@ -2,20 +2,40 @@
 import Site from '../layouts/Site.astro';
 import { club } from '../data/club';
 import ContactDetails from '../components/ContactDetails.astro';
+import PageSection from '../components/PageSection.astro';
 
 const mapsQuery = new URLSearchParams({ api: '1', query: club.mapAddress });
+const mapsUrl = `https://www.google.com/maps/search/?${mapsQuery}`;
+const embedQuery = new URLSearchParams({ q: club.mapAddress, z: '15', output: 'embed' });
+const embedUrl = `https://maps.google.com/maps?${embedQuery}`;
 ---
 
 <Site title="Kontakt" description={club.contactIntro}>
-  <div class="sheet">
-    <h1>Kontakt</h1>
-    <div class="prose">
-      <ContactDetails />
-      <section class="map-link">
-        <h2>Mapa</h2>
-        <p>{club.mapAddress}</p>
-        <a class="more" href={`https://www.google.com/maps/search/?${mapsQuery}`}>Otevřít v Mapách Google</a>
-      </section>
+  <PageSection frame>
+    <ContactDetails />
+    <div class="b b-s b-hr-line line-auto"><hr class="line-style line-color" /></div>
+    <div class="b b-s b-map pad-a club-map">
+      <details>
+        <summary>Zobrazit mapu – {club.mapAddress}</summary>
+        <iframe title={`Mapa – ${club.mapAddress}`} data-map-src={embedUrl} loading="lazy" referrerpolicy="strict-origin-when-cross-origin" hidden></iframe>
+      </details>
+      <a href={mapsUrl}>Otevřít v Mapách Google</a>
     </div>
-  </div>
+  </PageSection>
 </Site>
+
+<script is:inline>
+  const map = document.querySelector('.club-map details');
+  map?.addEventListener('toggle', () => {
+    const frame = map.querySelector('iframe');
+    if (map.open && !frame.hasAttribute('src')) {
+      frame.src = frame.dataset.mapSrc;
+      frame.hidden = false;
+    }
+  });
+</script>
+<style>
+  .club-map summary { padding-block: .75rem; cursor: pointer; }
+  .club-map iframe:not([hidden]) { display: block; width: 100%; aspect-ratio: 3.16; min-height: 12rem; border: 0; }
+  .club-map a { display: inline-block; margin-block: .5rem; }
+</style>

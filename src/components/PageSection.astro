@@ -1,0 +1,31 @@
+---
+import Picture from './Picture.astro';
+
+interface Props {
+  frame?: boolean;
+  theme?: string;
+  noColumns?: boolean;
+  wider?: boolean;
+  backgroundImage?: string;
+}
+
+const { frame = false, theme = frame ? 'sc-ac sc-a' : 'sc-w', noColumns = false, wider = false, backgroundImage } = Astro.props;
+---
+
+<section class:list={['s', frame ? 's-basic-box' : 's-basic', wider ? 'wnd-w-wider' : 'wnd-w-wide', 'cf wnd-s-normal wnd-h-auto', theme, { 'wnd-background-image': backgroundImage }]}>
+  <div class="s-w cf">
+    <div class:list={['s-o s-fs cf', { 'box-space': frame }]}>
+      <div class="s-bg cf" aria-hidden="true">
+        <div class:list={['s-bg-l', { 'wnd-background-image fx-none bgpos-center-center bgatt-scroll overlay-black': backgroundImage }]}>
+          {backgroundImage && <Picture image={backgroundImage} alt="" sizes="100vw" />}
+        </div>
+      </div>
+      <div class:list={['s-c s-fs cf', { 'sc-w': frame }]}>
+        <div class:list={['ez cf', { 'wnd-no-cols': noColumns }]}>
+          <div class="ez-c"><slot /></div>
+        </div>
+        <slot name="afterContent" />
+      </div>
+    </div>
+  </div>
+</section>

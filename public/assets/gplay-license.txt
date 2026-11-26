@@ -1,0 +1,13 @@
+Gplay Pattern
+
+Autorem vzoru je Dimitrie Hoekstra. Vzor byl zveřejněn ve sbírce Subtle Patterns 22. dubna 2012. Soubor textura-pozadi.png je původní gplaypattern.png z této sbírky.
+
+Autor a původní prezentace
+https://www.toptal.com/designers/subtlepatterns/gplay/
+
+Zdroj obrázku
+https://github.com/atlemo/SubtlePatterns/blob/gh-pages/gplaypattern.png
+
+Licence obrázku je Creative Commons Attribution-ShareAlike 3.0 Unported.
+https://creativecommons.org/licenses/by-sa/3.0/
+https://github.com/atlemo/SubtlePatterns/blob/gh-pages/README.md

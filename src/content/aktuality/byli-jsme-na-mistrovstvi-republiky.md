@@ -15,4 +15,4 @@ Děkujeme všem organizátorům, trenérům, rodičům a samozřejmě dětem za 
 
 Honzovi moc gratulujeme k titulu a všem účastníkům děkujeme za jejich snahu a výkony!
 
-***[Výsledky zde](https://chess-results.com/tnr1053153.aspx?lan=5&art=1&rd=9)***
+<p><em><span class="wsw-14"><strong><a href="https://chess-results.com/tnr1053153.aspx?lan=5&amp;art=1&amp;rd=9" target="_blank" rel="noopener">Výsledky zde</a></strong></span></em></p>

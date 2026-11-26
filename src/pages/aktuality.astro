@@ -2,24 +2,69 @@
 import { getCollection } from 'astro:content';
 import Site from '../layouts/Site.astro';
 import ArticleDate from '../components/ArticleDate.astro';
+import PageSection from '../components/PageSection.astro';
 import Picture from '../components/Picture.astro';
+import TextBlock from '../components/TextBlock.astro';
 
 const articles = (await getCollection('aktuality')).sort((a, b) => b.data.date.localeCompare(a.data.date));
 ---
 <Site title="Aktuality" image={articles[0]?.data.shareImage}>
-  <div class="sheet">
-    <h1>Aktuality</h1>
-    {articles.map(({ id, data }) => (
-      <article class="news-preview">
-        <a aria-label={data.title} href={`../l/${id}/`}>
-          <Picture image={data.cover} alt={data.coverAlt} />
-        </a>
-        <div>
-          <ArticleDate date={data.date} />
-          <h2><a href={`../l/${id}/`}>{data.title}</a></h2>
-          <p set:html={data.summary} />
+  <PageSection noColumns>
+    <TextBlock><h1 class="wnd-align-center"><strong>Aktuality</strong></h1></TextBlock>
+    <div class="blog blog-left-thumbnail thumb-float no-grid b b-s">
+      <div class="blog-wrapper b-cs">
+        <div class="blog-container">
+          {articles.map(({ id, data }) => (
+            <article class="item">
+              <div class="item-wrapper">
+                <div class="item-media">
+                  <a href={`../l/${id}/`} aria-label={data.title}>
+                    <div class="b-tb wnd-orientation-landscape">
+                      <Picture image={data.cover} alt={data.coverAlt} sizes="100vw" />
+                    </div>
+                  </a>
+                </div>
+                <div class="item-content">
+                  <div class="item-head">
+                    <h2><a href={`../l/${id}/`}><span class="ld"><span class="ld-c">{data.title}</span></span></a></h2>
+                    <div class="item-date"><div class="ld"><span class="ld-c"><ArticleDate date={data.date} /></span></div></div>
+                  </div>
+                  <div class="item-perex"><div class="perex"><div class="perex-content"><p set:html={data.summary} /></div></div></div>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
-      </article>
-    ))}
-  </div>
+      </div>
+    </div>
+  </PageSection>
 </Site>
+
+<style>
+  .blog { padding: 10px; }
+  .blog-wrapper { max-width: 1003px; }
+  .item { padding-bottom: 64px; }
+  .item-wrapper { display: flex; flex-direction: column; }
+  .item-media { flex: none; }
+  .item-media a { display: block; }
+  .b-tb { position: relative; aspect-ratio: 10/7; overflow: hidden; }
+  .b-tb :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .item-content { min-width: 0; padding-top: 10px; }
+  .item h2, .item h2 a { display: block; padding: 0; margin: 0; color: #4caf50; font-size: 24px; line-height: 1.4; font-weight: 400; text-decoration: none; }
+  .item h2 a:hover { text-decoration: underline; }
+  .item-date { padding-top: 2px; color: #c3c3c3; font-size: 16px; line-height: 1.5; font-weight: 300; font-style: italic; }
+  .item-perex { padding-top: 10px; font-size: 16px; line-height: 1.6; }
+  .perex p { margin: 0; font-size: inherit; line-height: inherit; }
+  .perex :global(strong) { font-weight: 600; }
+  @media (min-width: 600px) { .blog { padding: 15px; } }
+  @media (min-width: 768px) {
+    .item-wrapper { flex-direction: row; }
+    .item-media { width: 30%; }
+    .item-content { width: 70%; padding: 0 0 0 36px; }
+  }
+  @media (min-width: 900px) { .blog { padding: 20px; } }
+  @media (min-width: 1200px) {
+    .item h2, .item h2 a { font-size: 28px; }
+    .item-perex { font-size: 17.2px; }
+  }
+</style>

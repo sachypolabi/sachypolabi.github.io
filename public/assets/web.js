@@ -1,78 +1,61 @@
-"use strict";
+'use strict';
 
-// A downloaded folder opens in Finder too. Web servers resolve directory URLs themselves.
-if (location.protocol === "file:") {
-  for (const anchor of document.querySelectorAll("a[href]")) {
-    const href = anchor.getAttribute("href");
-    if (!/^(?:[a-z][\w+.-]*:|\/\/|#)/i.test(href) && href.split("#")[0].endsWith("/")) {
-      anchor.setAttribute("href", href.replace(/\/(?=#|$)/, "/index.html"));
+// The same directory links work when a downloaded copy is opened from Finder.
+if (location.protocol === 'file:') {
+  for (const anchor of document.querySelectorAll('a[href]')) {
+    const href = anchor.getAttribute('href');
+    if (!/^(?:[a-z][\w+.-]*:|\/\/|#)/i.test(href) && href.split('#')[0].endsWith('/')) {
+      anchor.setAttribute('href', href.replace(/\/(?=#|$)/, '/index.html'));
     }
   }
 }
 
-const menuButton = document.querySelector(".menu-toggle");
-const navigation = document.getElementById("navigace");
-const compactScreen = window.matchMedia("(max-width: 54rem)");
+const menu = document.getElementById('menu');
+const toggle = document.getElementById('menu-submit');
+const header = document.querySelector('.l-h');
+const closeButton = menu.querySelector('.menu-close');
+const desktop = matchMedia('(min-width: 56.25em)');
+const touch = matchMedia('(pointer: coarse)');
+document.body.classList.add(touch.matches ? 'mobile' : 'desktop');
 
-function setMenu(open) {
-  navigation.hidden = compactScreen.matches && !open;
-  menuButton.setAttribute("aria-expanded", String(!navigation.hidden));
+function refreshHeader() {
+  header.classList.toggle('compact', !desktop.matches && window.scrollY >= 7);
 }
 
-menuButton.hidden = false;
-setMenu(false);
-compactScreen.addEventListener("change", () => setMenu(false));
-menuButton.addEventListener("click", () => setMenu(navigation.hidden));
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && compactScreen.matches && !navigation.hidden) {
-    setMenu(false);
-    menuButton.focus();
+function setMenu(open, returnFocus = false) {
+  const expanded = open && !desktop.matches;
+  menu.classList.toggle('visible', expanded);
+  menu.classList.toggle('open', expanded);
+  toggle.classList.toggle('active', expanded);
+  toggle.setAttribute('aria-expanded', String(expanded));
+  document.body.classList.toggle('menu-open', expanded);
+  document.body.classList.toggle('noscroll', expanded);
+  document.documentElement.classList.toggle('noscroll', expanded);
+  menu.inert = !desktop.matches && !expanded;
+  if (expanded) closeButton.focus({ preventScroll: true });
+  if (returnFocus) toggle.focus({ preventScroll: true });
+}
+
+for (const button of [toggle, closeButton]) {
+  button.addEventListener('click', (event) => {
+    event.preventDefault();
+    const wasOpen = menu.classList.contains('open');
+    setMenu(!wasOpen, wasOpen);
+  });
+  button.addEventListener('keydown', (event) => {
+    if (event.key === ' ') { event.preventDefault(); button.click(); }
+  });
+}
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && menu.classList.contains('open')) setMenu(false, true);
+});
+document.addEventListener('click', (event) => {
+  if (menu.classList.contains('open') && !menu.contains(event.target) && !toggle.contains(event.target)) {
+    setMenu(false, true);
   }
 });
-
-// Each thumbnail is a normal link to its full-size photograph even without JavaScript.
-const lightbox = document.querySelector(".lightbox");
-if (lightbox && typeof lightbox.showModal === "function") {
-  const fullSize = document.createElement("img");
-  const caption = lightbox.querySelector("figcaption");
-  const counter = lightbox.querySelector(".lightbox-number");
-  let links = [];
-  let index = 0;
-  let opener;
-
-  function showPhoto(position) {
-    index = (position + links.length) % links.length;
-    const current = links[index];
-    fullSize.alt = current.querySelector("img").alt;
-    fullSize.src = current.href;
-    caption.before(fullSize);
-    caption.textContent = current.closest("figure").querySelector("figcaption").textContent;
-    counter.textContent = (index + 1) + " / " + links.length;
-  }
-
-  for (const gallery of document.querySelectorAll("[data-gallery]")) {
-    gallery.addEventListener("click", (event) => {
-      const link = event.target.closest("a.photo-link");
-      if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      event.preventDefault();
-      links = [...gallery.querySelectorAll("a.photo-link")];
-      opener = link;
-      showPhoto(links.indexOf(link));
-      lightbox.showModal();
-    });
-  }
-
-  lightbox.querySelector("[data-previous]").addEventListener("click", () => showPhoto(index - 1));
-  lightbox.querySelector("[data-next]").addEventListener("click", () => showPhoto(index + 1));
-  lightbox.querySelector("[data-close]").addEventListener("click", () => lightbox.close());
-  lightbox.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-      event.preventDefault();
-      showPhoto(index + (event.key === "ArrowLeft" ? -1 : 1));
-    }
-  });
-  lightbox.addEventListener("close", () => {
-    fullSize.remove();
-    opener?.focus({ preventScroll: true });
-  });
-}
+desktop.addEventListener('change', () => { refreshHeader(); setMenu(false); });
+window.addEventListener('scroll', refreshHeader, { passive: true });
+refreshHeader();
+setMenu(false);

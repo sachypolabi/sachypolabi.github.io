@@ -1,17 +1,33 @@
 ---
 import Site from '../layouts/Site.astro';
-import Picture from '../components/Picture.astro';
+import Column from '../components/Column.astro';
+import Columns from '../components/Columns.astro';
+import PageSection from '../components/PageSection.astro';
+import PhotoBlock from '../components/PhotoBlock.astro';
+import TextBlock from '../components/TextBlock.astro';
 import sponsors from '../data/sponsors.json';
+
+// The text list lines up with the corresponding logos on the poster.
+const blankLinesBefore = [0, 0, 2, 2, 2, 1, 1];
 ---
 
 <Site title="Sponzoři" image="sponzori-700.png">
-  <div class="sheet">
-    <h1>Sponzoři</h1>
-    <div class="sponsors">
-      <a class="photo-link" href="../media/sponzori.png">
-        <Picture image="sponzori" alt="Loga sponzorů Šachy Polabí" />
-      </a>
-      <ul>{sponsors.map((name) => <li>{name}</li>)}</ul>
-    </div>
-  </div>
+  <PageSection>
+    <Columns>
+      <Column width={50}>
+        <PhotoBlock image="sponzori" alt="Loga sponzorů Šachy Polabí" aspect={173.93} openOriginal />
+      </Column>
+      <Column width={50}>
+        <TextBlock>
+          <h1 class="wnd-align-center"><strong>Sponzoři</strong></h1>
+          {sponsors.map((name, index) => (
+            <Fragment>
+              {Array.from({ length: blankLinesBefore[index] ?? 1 }, () => <p class="wnd-align-left" aria-hidden="true"><br /></p>)}
+              <ul><li>{name}</li></ul>
+            </Fragment>
+          ))}
+        </TextBlock>
+      </Column>
+    </Columns>
+  </PageSection>
 </Site>

@@ -1,40 +1,52 @@
 ---
 import Site from '../layouts/Site.astro';
-import Picture from '../components/Picture.astro';
+import PageSection from '../components/PageSection.astro';
+import PhotoBlock from '../components/PhotoBlock.astro';
+import Spacer from '../components/Spacer.astro';
+import TextBlock from '../components/TextBlock.astro';
+import Columns from '../components/Columns.astro';
+import Column from '../components/Column.astro';
+import SectionLink from '../components/SectionLink.astro';
 
 const description = "Jsme sportovní klub, který se specializuje na šachy v Středočeském kraji - Polabí. Nabízíme šachové kurzy pro začátečníky i pokročilé, pravidelné turnaje a tréninky s profesionálními trenéry. Připojte se k nám a rozvíjejte své šachové dovednosti!";
 ---
 
 <Site title="Služby" description={description} image="sachovnice-sluzby-700.jpg">
-  <div class="sheet">
-    <h1>Služby</h1>
-    <div class="prose lead">
-      <p>Jsme sportovní klub, který se specializuje na šachy v Středočeském kraji - Polabí. Nabízíme šachové kurzy pro začátečníky i pokročilé, pravidelné turnaje a tréninky s profesionálními trenéry. Připojte se k nám a rozvíjejte své šachové dovednosti!</p>
-    </div>
-    <div class="wide-photo">
-      <Picture image="sachovnice-sluzby" alt="Šachové figury na šachovnici" />
-    </div>
-    <div class="prose service-list">
-      <section>
-        <h2>Tréninky pro začátečníky</h2>
-        <p>Tréninky pro začátečníky jsou výborným způsobem, jak se naučit základy a postupně zlepšovat kvalitu hry. Náš klub v rámci projektu <strong>Šachy do škol </strong>nabízí skupinové tréninky pro děti vybraných základních škol, ale také individuální tréninky pro začátečníky i mírně pokročilé. </p>
-      </section>
-      <section>
-        <h2>Online šachovnice</h2>
-        <p>Součástí tréninků je samozřejmě také řešení online diagramů! Každý týden se mohou Vaše děti těšit na nové diagramy, díky kterým mohou rozvíjet své dovednosti i doma! Odkazy na stránky <strong>my-chess.com</strong> a <strong>lichess.org </strong>↓</p>
-      </section>
-      <section>
-        <h2>Turnaje a soutěže</h2>
-        <p>Turnaje a soutěže jsou skvělým způsobem, jak ukázat své sportovní nebo umělecké schopnosti a soupeřit s ostatními. Bližší informace o jednotlivých akcích můžete najít na webových stránkách Šachového svazu ČR, Středočeského šachového svazu nebo chess-results.com, kam se ukládají výsledky jednotlivých turnajů.</p>
-      </section>
-    </div>
-    <ul class="resource-links">
-      <li><a href="https://sachydoskol.cz">sachydoskol.cz</a></li>
-      <li><a href="https://my-chess.com">my-chess.com</a></li>
-      <li><a href="https://lichess.org">lichess.org</a></li>
-      <li><a href="https://chess-results.com">chess-results.com</a></li>
-      <li><a href="https://chess.cz">chess.cz</a></li>
-      <li><a href="https://www.stcsach.cz/">www.stcsach.cz</a></li>
-    </ul>
-  </div>
+  <PageSection frame>
+    <Spacer height={0.08} />
+    <TextBlock><h1 class="wnd-align-center">Služby</h1></TextBlock>
+    <TextBlock><p class="wnd-align-center">Jsme sportovní klub, který se specializuje na šachy v Středočeském kraji - Polabí. Nabízíme šachové kurzy pro začátečníky i pokročilé, pravidelné turnaje a tréninky s profesionálními trenéry. Připojte se k nám a rozvíjejte své šachové dovednosti!</p></TextBlock>
+    <Spacer height={0} />
+    <PhotoBlock image="sachovnice-sluzby" alt="Šachové figury na šachovnici" aspect={35.85} margin={12.83} cropTop={-38.29} cropHeight={176.58296943231} sizes="100vw" />
+    <Spacer height={2.75} />
+    <Columns>
+      <Column width={33.333}>
+        <TextBlock><h2>Tréninky pro začátečníky</h2></TextBlock>
+        <TextBlock><p class="wnd-align-justify">Tréninky pro začátečníky jsou výborným způsobem, jak se naučit základy a postupně zlepšovat kvalitu hry. Náš klub v rámci projektu <strong>Šachy do škol </strong>nabízí skupinové tréninky pro děti vybraných základních škol, ale také individuální tréninky pro začátečníky i mírně pokročilé. </p></TextBlock>
+      </Column>
+      <Column width={33.333}>
+        <TextBlock><h2>Online šachovnice</h2></TextBlock>
+        <TextBlock><p class="wnd-align-justify">Součástí tréninků je samozřejmě také řešení online diagramů! Každý týden se mohou Vaše děti těšit na nové diagramy, díky kterým mohou rozvíjet své dovednosti i doma! Odkazy na stránky <strong>my-chess.com</strong> a <strong>lichess.org </strong><span style="font-size: 0.95rem; letter-spacing: 0px;">↓</span></p></TextBlock>
+      </Column>
+      <Column width={33.334}>
+        <TextBlock><h2><span>Turnaje a soutěže</span></h2></TextBlock>
+        <TextBlock><p class="wnd-align-justify">Turnaje a soutěže jsou skvělým způsobem, jak ukázat své sportovní nebo umělecké schopnosti a soupeřit s ostatními. Bližší informace o jednotlivých akcích můžete najít na webových stránkách Šachového svazu ČR, Středočeského šachového svazu nebo chess-results.com, kam se ukládají výsledky jednotlivých turnajů.</p></TextBlock>
+      </Column>
+    </Columns>
+    <div class="b b-s b-hr-line line-auto"><hr class="line-style line-color" /></div>
+    <Columns>
+      <Column width={33.334}>
+        <SectionLink href="https://sachydoskol.cz" variant={1} external>sachydoskol.cz</SectionLink>
+      </Column>
+      <Column width={33.332}>
+        <SectionLink href="https://my-chess.com" variant={3} external>my-chess.com</SectionLink>
+        <SectionLink href="https://lichess.org" variant={4} align="right" external>lichess.org</SectionLink>
+      </Column>
+      <Column width={33.334}>
+        <SectionLink href="https://chess-results.com" variant={4} external>chess-results.com</SectionLink>
+        <SectionLink href="https://chess.cz" variant={3} align="right" external>chess.cz</SectionLink>
+        <SectionLink href="https://www.stcsach.cz/" variant={1} align="center" external>www.stcsach.cz</SectionLink>
+      </Column>
+    </Columns>
+  </PageSection>
 </Site>

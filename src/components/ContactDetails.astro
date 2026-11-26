@@ -1,22 +1,68 @@
 ---
 import { club } from '../data/club';
 import { rootPrefix } from '../lib/paths';
+import Column from './Column.astro';
+import Columns from './Columns.astro';
+import SectionLink from './SectionLink.astro';
+import Spacer from './Spacer.astro';
+import TextBlock from './TextBlock.astro';
 
 const root = rootPrefix(Astro.url.pathname);
+const isHome = !root;
+const phoneHref = `tel:${club.phone.replace(/\s/g, '')}`;
 const details = [
-  { icon: 'telefon', label: 'Telefon', href: `tel:${club.phone.replace(/\s/g, '')}`, text: club.phone },
-  { icon: 'email', label: 'E-mail', href: `mailto:${club.email}`, text: club.email },
-  { icon: root ? 'kontakt' : 'web', label: 'Web', href: root || './', text: club.brand },
-  { icon: 'tym', label: 'Tým', href: `${root}tym/`, text: 'Tým – Šachy Polabí z.s.' },
+  { icon: isHome ? 'web' : 'kontakt', heading: true, href: root || './', text: club.brand },
+  { icon: 'telefon', heading: true, href: phoneHref, text: club.phone },
+  { icon: 'email', heading: false, href: `mailto:${club.email}`, text: club.email },
+  { icon: 'tym', heading: false, href: `${root}tym/`, text: 'Tým', after: ' - Šachy Polabí z.s.' },
 ];
 ---
-<p>{club.contactIntro}</p>
-<dl class="contacts">
-  {details.map(({ icon, label, href, text }) => (
-    <div>
-      <dt><img src={`${root}media/ikona-${icon}.svg`} alt="" width="22" height="22" />{label}</dt>
-      <dd><a href={href}>{text}</a></dd>
+
+<Spacer height={0.25} />
+<Columns>
+  <Column width={84.344}><TextBlock><h1>Kontakt</h1></TextBlock></Column>
+  <Column width={15.656}><Spacer height={45.26} /></Column>
+</Columns>
+<Columns>
+  <Column width={36.799}>
+    <Spacer height={0} />
+    <TextBlock>
+      <p class={isHome ? 'wnd-align-left' : 'wnd-align-justify'}>{club.contactIntro}</p>
+    </TextBlock>
+    <Spacer height={0} />
+    <div class="mt mt-contact img-s-s b-s b-s-50 cf default">
+      <div class="mt-container">
+        {details.map(({ icon, heading, href, text, after }) => (
+          <div class="mt-item cf">
+            <div class="b-img b-img-default b b-s cf pad-a wnd-type-icon">
+              <div class="b-img-w">
+                <div class="b-img-c">
+                  <img class:list={['contact-icon', { 'on-photo': isHome }]} src={`${root}media/ikona-${icon}.svg`} alt="" width="24" height="24" />
+                </div>
+              </div>
+            </div>
+            <TextBlock>
+              {heading ? <h3><a href={href}>{text}</a></h3> : <p><a href={href}>{text}</a>{after}</p>}
+            </TextBlock>
+          </div>
+        ))}
+      </div>
     </div>
-  ))}
-</dl>
-<a class="button" href={club.eos.url}>{club.eos.label}</a>
+  </Column>
+  <Column width={5}><Spacer height={150} /></Column>
+  <Column width={58.201}>
+    <SectionLink href={`mailto:${club.email}`}>Napsat e-mail</SectionLink>
+    <SectionLink href={phoneHref}>Zavolat do klubu</SectionLink>
+    <SectionLink href={club.eos.url}>{club.eos.label}</SectionLink>
+  </Column>
+</Columns>
+
+<style>
+  .contact-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .contact-icon.on-photo { filter: brightness(0) invert(1); }
+</style>

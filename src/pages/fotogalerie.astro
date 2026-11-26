@@ -1,12 +1,13 @@
 ---
 import Site from '../layouts/Site.astro';
 import Gallery from '../components/Gallery.astro';
+import PageSection from '../components/PageSection.astro';
+import TextBlock from '../components/TextBlock.astro';
 import galleries from '../data/galleries.json';
 ---
-
 <Site title="Fotogalerie" image="galerie-okresni-prebor-skol-nymburk-700.png" gallery>
-  <div class="sheet">
-    <h1>Fotogalerie</h1>
+  <PageSection noColumns>
+    <TextBlock><h1 class="wnd-align-center"><strong>Fotogalerie</strong></h1></TextBlock>
     <Gallery photos={galleries.klub} />
-  </div>
+  </PageSection>
 </Site>

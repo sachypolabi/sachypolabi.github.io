@@ -2,24 +2,58 @@
   {
     "name": "ZŠ J.A. Komenského Lysá nad Labem",
     "image": "zs-komenskeho-lysa",
-    "schedule": "<strong>Každé</strong> <strong>pondělí 13:15-15:00</strong>"
+    "schedule": "<strong>Každé</strong> <strong>pondělí 13:15-15:00</strong>",
+    "layout": {
+      "row": 1,
+      "width": 33.33,
+      "aspect": 159.26,
+      "cropWidth": 111.92966183904,
+      "cropLeft": -5.96
+    }
   },
   {
     "name": "ZŠ B. Hrozného Lysá nad Labem",
     "image": "zs-hrozneho-lysa",
-    "schedule": "<strong>Každou středu</strong> <strong>14:00-15:30</strong>"
+    "schedule": "<strong>Každou středu</strong> <strong>14:00-15:30</strong>",
+    "layout": {
+      "row": 1,
+      "width": 33.33,
+      "aspect": 159.32,
+      "cropWidth": 112.13241572458,
+      "cropLeft": -6.07
+    }
   },
   {
     "name": "ZŠ T.G. Masaryka Lysá nad Labem",
     "image": "zs-masaryka-lysa",
-    "schedule": "<strong>Každou středu 12:15-13:45</strong>"
+    "schedule": "<strong>Každou středu 12:15-13:45</strong>",
+    "layout": {
+      "row": 1,
+      "width": 33.34,
+      "aspect": 159.38,
+      "cropWidth": 113.27292110874,
+      "cropLeft": -6.64
+    }
   },
   {
     "name": "ZŠ Na Výslunní Brandýs nad Labem",
-    "image": "zs-na-vyslunni-brandys"
+    "image": "zs-na-vyslunni-brandys",
+    "layout": {
+      "row": 2,
+      "width": 38.61,
+      "aspect": 143.56
+    }
   },
   {
     "name": "ZŠ JUVENTA Lysá nad Labem",
-    "image": "zs-juventa"
+    "image": "zs-juventa",
+    "layout": {
+      "row": 2,
+      "width": 34.78,
+      "gapBefore": 26.61,
+      "aspect": 162.4,
+      "cropWidth": 116.25107222508,
+      "cropLeft": -8.13
+    }
   }
 ]

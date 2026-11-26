@@ -1,25 +1,37 @@
 ---
 import Site from '../layouts/Site.astro';
-import Picture from '../components/Picture.astro';
+import PageSection from '../components/PageSection.astro';
+import PhotoBlock from '../components/PhotoBlock.astro';
+import Spacer from '../components/Spacer.astro';
+import TextBlock from '../components/TextBlock.astro';
+import Columns from '../components/Columns.astro';
+import Column from '../components/Column.astro';
 import activities from '../data/activities.json';
+
+const rows = [activities.slice(0, 3), activities.slice(3)];
+const widths = [[33.33, 33.33, 33.34], [33.334, 33.332, 33.334]];
 
 const description = "Jsme šachový klub v Středočeském kraji, který se specializuje na šachové turnaje a tréninky pro děti. Chceme vytvořit partu rodičů a dětí, kterým trenéři chtějí ukázat šachové prostředí a naučit se v něm orientovat. Vyučujeme především interaktivní a zábavnou formou, kterou si Vaše děti určitě zamilují! Přijďte se k nám připojit a objevit svůj...";
 ---
 
 <Site title="Naše práce" description={description} image="mistrovske-turnaje-700.png">
-  <div class="sheet">
-    <h1>Naše práce</h1>
-    <div class="prose lead">
-      <p>Jsme šachový klub v Středočeském kraji, který se specializuje na šachové turnaje a tréninky pro děti. <strong>Chceme vytvořit partu rodičů a dětí, kterým trenéři chtějí ukázat šachové prostředí a naučit se v něm orientovat</strong>. Vyučujeme především interaktivní a zábavnou formou, kterou si Vaše děti určitě zamilují! Přijďte se k nám připojit a objevit svůj talent pro šachy!</p>
-    </div>
-    <div class="activity-grid">
-      {activities.map((activity) => (
-        <section class="activity">
-          <Picture image={activity.image} alt="" sizes="(max-width: 680px) 100vw, 30vw" />
-          <h2>{activity.title}</h2>
-          <p set:html={activity.description} />
-        </section>
-      ))}
-    </div>
-  </div>
+  <PageSection frame>
+    <Spacer height={0} />
+    <TextBlock><h1 class="wnd-align-center"><span>Naše práce</span></h1></TextBlock>
+    <TextBlock><p class="wnd-align-center">Jsme šachový klub v Středočeském kraji, který se specializuje na šachové turnaje a tréninky pro děti. <strong>Chceme vytvořit partu rodičů a dětí, kterým trenéři chtějí ukázat šachové prostředí a naučit se v něm orientovat</strong>. Vyučujeme především interaktivní a zábavnou formou, kterou si Vaše děti určitě zamilují! Přijďte se k nám připojit a objevit svůj talent pro šachy!</p></TextBlock>
+    {rows.map((row, rowIndex) => (
+      <Fragment>
+        <Spacer height={rowIndex === 0 ? 0 : 0.92} />
+        <Columns>
+          {row.map((activity, colIndex) => (
+            <Column width={widths[rowIndex][colIndex]}>
+              <PhotoBlock image={activity.image} alt="" sizes="(min-width: 600px) 75vw, 100vw" {...activity.crop} />
+              <TextBlock><h2 class="wnd-align-center">{activity.title}</h2></TextBlock>
+              <TextBlock><p class="wnd-align-justify" set:html={activity.description} /></TextBlock>
+            </Column>
+          ))}
+        </Columns>
+      </Fragment>
+    ))}
+  </PageSection>
 </Site>
