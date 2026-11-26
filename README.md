@@ -29,7 +29,7 @@ Novou aktualitu přidej jako soubor `.md` podle [stávajícího článku](src/co
 
 ## Průběžné nasazení na GitHub Pages
 
-Po prvním nasazení statické verze vyber při přechodu na Astro v **Settings → Pages → Build and deployment → Source** možnost **GitHub Actions**. [Workflow Pages](.github/workflows/pages.yml) sestaví návrhy změn, po zápisu do větve `main` sestaví aktuální zdroje a publikuje jejich výstup. Pro opakované nasazení z `main` je v Actions dostupné **Run workflow**. Zveřejněná verze tak vychází ze zdrojů i při úpravách článku přímo na GitHubu. [Postup GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
+GitHub Actions ověří sestavení u každého návrhu změn. Při zápisu do větve `main` sestaví aktuální zdroje a publikuje je na `https://sachypolabi.cz/`. Stačí tedy upravit třeba článek přímo na GitHubu. Poslední sestavení lze zopakovat přes **Actions → Build and publish Astro → Run workflow**. [Konfigurace nasazení](.github/workflows/pages.yml)
 
 ## Převod z Webnode
 
@@ -43,9 +43,9 @@ Místní složka .webnode-archive obsahuje původní veřejné HTML, sitemapu, s
 
 Web patří klubové organizaci na GitHubu a její veřejný repozitář používá tarif Free. [Repozitář spolku](https://github.com/sachypolabi/sachypolabi.github.io)
 
-1. V nastavení organizace **Settings → Pages** vydává GitHub ověřovací hodnotu pro TXT se jménem **_github-pages-challenge-sachypolabi**. Po přidání hodnoty do Azure DNS se ověření dokončí tlačítkem **Verify**. TXT patří do zóny i po ověření. [Ověření domény](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages)
-2. Před přesměrováním DNS nastav v repozitáři **Settings → Pages → Custom domain** na **sachypolabi.cz**. Pak v Azure DNS nastav záznamy pro kořen a www podle tabulky. Před odstraněním původního zástupného CNAME zkontroluj explicitní záznam klub pro EOS. MX a dosavadní TXT ponech v zóně. [Nastavení vlastní domény](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
-3. Po vydání certifikátu zapni **Enforce HTTPS**. Ověř úvod, starý odkaz na článek, přesměrování www a členskou platformu. GitHub pro propagaci DNS i zpřístupnění volby HTTPS uvádí až 24 hodin. [HTTPS na GitHub Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
+GitHub Pages obsluhuje veřejný web pod vlastní doménou `sachypolabi.cz` a přesměrovává na ni také `www`. Certifikát a přesměrování HTTP na HTTPS se spravují v repozitáři v **Settings → Pages**. [HTTPS na GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https)
+
+Azure hostuje DNS zónu. Záznam TXT `_github-pages-challenge-sachypolabi` dokládá vlastnictví domény klubové organizaci a patří do zóny i po prvním ověření. Samostatný záznam `klub` obsluhuje členskou platformu EOS. [Ověření domény](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages)
 
 | Jméno v zóně sachypolabi.cz | Typ | Cílová hodnota |
 | --- | --- | --- |
