@@ -21,10 +21,22 @@ function enableSlideshow(slider) {
   const loopDots = slider.querySelector(".dots-content.infinite ul");
   const clones = Number(slider.dataset.clones);
   const count = originals.length;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let current = 0;
   let touched;
   let wasSwiped = false;
   let timer;
+  let autoplay;
+  let visible = false;
+
+  function scheduleAutoplay() {
+    clearTimeout(autoplay);
+    if (count < 2 || !visible || document.hidden || reducedMotion.matches || slider.matches(":hover, :focus-within")) return;
+    autoplay = setTimeout(() => {
+      if (document.querySelector(".pswp--open")) scheduleAutoplay();
+      else select(current + 1);
+    }, 5000);
+  }
 
   function setPosition(value, animate) {
     track.classList.toggle("moving", animate);
@@ -52,6 +64,7 @@ function enableSlideshow(slider) {
     if (index !== current) {
       timer = setTimeout(() => setPosition(clones + current, false), 310);
     }
+    scheduleAutoplay();
   }
   slider.addEventListener("click", (event) => {
     const button = event.target.closest("button");
@@ -86,6 +99,17 @@ function enableSlideshow(slider) {
       wasSwiped = false;
     }
   }, true);
+  const visibleSlider = new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    scheduleAutoplay();
+  });
+  visibleSlider.observe(slider);
+  slider.addEventListener("mouseenter", scheduleAutoplay);
+  slider.addEventListener("mouseleave", scheduleAutoplay);
+  slider.addEventListener("focusin", scheduleAutoplay);
+  slider.addEventListener("focusout", () => queueMicrotask(scheduleAutoplay));
+  document.addEventListener("visibilitychange", scheduleAutoplay);
+  reducedMotion.addEventListener("change", scheduleAutoplay);
   slider.dataset.enhanced = "true";
   select(0, false);
 }

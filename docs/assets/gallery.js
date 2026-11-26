@@ -21,10 +21,22 @@ function enableSlideshow(slider) {
   const loopDots = slider.querySelector(".dots-content.infinite ul");
   const clones = Number(slider.dataset.clones);
   const count = originals.length;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let current = 0;
   let touched;
   let wasSwiped = false;
   let timer;
+  let autoplay;
+  let visible = false;
+
+  function scheduleAutoplay() {
+    clearTimeout(autoplay);
+    if (count < 2 || !visible || document.hidden || reducedMotion.matches || slider.matches(":hover, :focus-within")) return;
+    autoplay = setTimeout(() => {
+      if (document.querySelector(".pswp--open")) scheduleAutoplay();
+      else select(current + 1);
+    }, 5000);
+  }
 
   function setPosition(value, animate) {
     track.classList.toggle("moving", animate);
@@ -52,6 +64,7 @@ function enableSlideshow(slider) {
     if (index !== current) {
       timer = setTimeout(() => setPosition(clones + current, false), 310);
     }
+    scheduleAutoplay();
   }
   slider.addEventListener("click", (event) => {
     const button = event.target.closest("button");
@@ -86,6 +99,17 @@ function enableSlideshow(slider) {
       wasSwiped = false;
     }
   }, true);
+  const visibleSlider = new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    scheduleAutoplay();
+  });
+  visibleSlider.observe(slider);
+  slider.addEventListener("mouseenter", scheduleAutoplay);
+  slider.addEventListener("mouseleave", scheduleAutoplay);
+  slider.addEventListener("focusin", scheduleAutoplay);
+  slider.addEventListener("focusout", () => queueMicrotask(scheduleAutoplay));
+  document.addEventListener("visibilitychange", scheduleAutoplay);
+  reducedMotion.addEventListener("change", scheduleAutoplay);
   slider.dataset.enhanced = "true";
   select(0, false);
 }
@@ -97,12 +121,19 @@ function enableLightbox(gallery) {
     children: ".original a.photo-link",
     pswpModule: PhotoSwipe,
     bgOpacity: 0.9,
+    padding: { top: 50, right: 20, bottom: 50, left: 20 },
     closeTitle: "Zavřít",
     zoomTitle: "Přiblížit fotografii",
     arrowPrevTitle: "Předchozí fotografie",
     arrowNextTitle: "Další fotografie"
   });
-  new PhotoSwipeDynamicCaption(lightbox, { type: "below", captionContent: "figcaption", verticallyCenterImage: true });
+  const desktop = window.matchMedia("(min-width: 600px)");
+  const captions = new PhotoSwipeDynamicCaption(lightbox, {
+    type: "below",
+    captionContent: "figcaption",
+    verticallyCenterImage: desktop.matches
+  });
+  desktop.addEventListener("change", event => { captions.options.verticallyCenterImage = event.matches; });
   lightbox.on("uiRegister", () => {
     const viewer = lightbox.pswp;
     viewer.on("afterInit", () => viewer.element.setAttribute("aria-label", "Zvětšená fotografie"));
